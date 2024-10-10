@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter } from "react-router-dom";
+// import { HelmetProvider } from "react-helmet-async";
+// import { BrowserRouter } from "react-router-dom";
 
 // import store from "./redux/store.js";
 
