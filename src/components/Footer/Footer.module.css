@@ -1,0 +1,143 @@
+.footer {
+    padding: 16px 0;
+
+    background-color: #f4f4f4;
+}
+
+.footerNavList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 32px;
+}
+
+.footerNavItemTitle {
+    font-size: 18px;
+
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #77bf6b;
+}
+
+.footerNavItemList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.footerNavItemLink {
+    font-size: 16px;
+    line-height: normal;
+    color: #0e2b3d;
+
+    transition: color 0.2s ease-in-out;
+}
+
+.footerNavItemLink:hover {
+    color: #157dc7;
+}
+
+.footerContactsContainer {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.footerContactsContainer:last-child {
+    margin-bottom: 0;
+}
+
+.footerContactsIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.footerLogoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-top: 32px;
+}
+
+.footerLogoImage {
+    width: 110px;
+}
+
+.footerPrivacyText {
+    font-size: 12px;
+    line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+    .footer {
+        padding: 24px 0 0;
+    }
+
+    .footerNavList {
+        flex-direction: row;
+
+        gap: 128px;
+    }
+
+    .footerLogoImage {
+        width: 150px;
+    }
+
+    .footerPrivacyText {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .footer {
+        padding: 32px 0 0;
+    }
+
+    .footerNavList {
+        gap: 256px;
+    }
+
+    .footerNavItemTitle {
+        font-size: 20px;
+
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+    }
+
+    .footerNavItemList {
+        gap: 12px;
+    }
+
+    .footerNavItemLink {
+        font-size: 18px;
+    }
+
+    .footerContactsContainer {
+        gap: 12px;
+
+        margin-bottom: 12px;
+    }
+
+    .footerContactsIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .footerLogoImage {
+        width: 200px;
+    }
+
+    .footerPrivacyText {
+        font-size: 16px;
+    }
+}

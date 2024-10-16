@@ -5,7 +5,7 @@ import css from "./Home.module.css";
 const Home = () => {
     return (
         <>
-            <DocumentTitle>Home</DocumentTitle>
+            <DocumentTitle>Bell Care</DocumentTitle>
 
             <div>Home</div>
         </>
