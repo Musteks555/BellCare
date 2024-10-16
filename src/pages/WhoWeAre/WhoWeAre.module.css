@@ -1,0 +1,190 @@
+.about {
+    padding: 32px 0;
+}
+
+.aboutTitle {
+    font-size: 30px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.aboutDescription {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0e2b3d;
+
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.aboutNameColor {
+    text-shadow: 0.7px 0.7px 1px #0000008a;
+    color: #157dc7;
+}
+
+.aboutNameColor span {
+    color: #1f9b60;
+}
+
+.aboutSubTitle {
+    font-size: 28px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.aboutSubTitle strong {
+    text-shadow: 0.7px 0.7px 1px #0000008a;
+    color: #157dc7;
+}
+
+.aboutSubTitle strong span {
+    color: #1f9b60;
+}
+
+.aboutList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.aboutItem {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.aboutItemTitle {
+    font-size: 20px;
+    line-height: normal;
+    font-weight: 600;
+    color: #0e2b3d;
+}
+
+.aboutItemText {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0e2b3d;
+
+    padding-left: 16px;
+}
+
+.aboutSubList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    list-style: disc;
+    padding-left: 16px;
+}
+
+.aboutSubList .aboutItemText {
+    padding-left: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .about {
+        padding: 32px 0 64px;
+    }
+
+    .aboutTitle {
+        font-size: 36px;
+
+        margin-bottom: 48px;
+    }
+
+    .aboutDescription {
+        font-size: 18px;
+
+        margin-bottom: 48px;
+    }
+
+    .aboutSubTitle {
+        font-size: 30px;
+
+        margin-bottom: 48px;
+    }
+
+    .aboutList {
+        gap: 32px;
+    }
+
+    .aboutItem {
+        gap: 18px;
+    }
+
+    .aboutItemTitle {
+        font-size: 22px;
+    }
+
+    .aboutItemText {
+        font-size: 18px;
+
+        padding-left: 24px;
+    }
+
+    .aboutSubList {
+        gap: 18px;
+
+        padding-left: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .about {
+        padding: 32px 0 64px;
+    }
+
+    .aboutTitle {
+        font-size: 44px;
+
+        margin-bottom: 56px;
+    }
+
+    .aboutDescription {
+        font-size: 20px;
+
+        margin-bottom: 64px;
+    }
+
+    .aboutSubTitle {
+        font-size: 30px;
+
+        margin-bottom: 48px;
+    }
+
+    .aboutList {
+        gap: 40px;
+    }
+
+    .aboutItem {
+        gap: 24px;
+    }
+
+    .aboutItemTitle {
+        font-size: 24px;
+    }
+
+    .aboutItemText {
+        font-size: 20px;
+
+        padding-left: 32px;
+    }
+
+    .aboutSubList {
+        gap: 24px;
+
+        padding-left: 32px;
+    }
+}

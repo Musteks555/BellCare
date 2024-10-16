@@ -23,12 +23,13 @@ const ContactUs = () => {
                     <p className={css.contactNote}>
                         <strong>PLEASE NOTE:</strong> We only sell to certified doctors and businesses.
                     </p>
-
+                </Container>
+                <Container>
                     <h2 className={css.contactListTitle}>Contacts:</h2>
 
                     <ul className={css.contactList}>
                         <li className={css.contactItem}>
-                            <IoMail color="d7d5d5" className={css.contactItemIcon} />
+                            <IoMail color="157dc7" className={css.contactItemIcon} />
 
                             <a href="mailto:hello@bellcare-line.com" className={css.contactItemText} target="_blank" rel="noreferrer">
                                 hello@bellcare-line.com
@@ -36,7 +37,7 @@ const ContactUs = () => {
                         </li>
 
                         <li className={css.contactItem}>
-                            <BsFillTelephoneFill color="d7d5d5" className={css.contactItemIcon} />
+                            <BsFillTelephoneFill color="157dc7" className={css.contactItemIcon} />
 
                             <a href="tel:+12489737534" className={css.contactItemText} target="_blank" rel="noreferrer">
                                 +1 248 973 7534
@@ -44,7 +45,7 @@ const ContactUs = () => {
                         </li>
 
                         <li className={css.contactItem}>
-                            <BsFillTelephoneFill color="d7d5d5" className={css.contactItemIcon} />
+                            <BsFillTelephoneFill color="157dc7" className={css.contactItemIcon} />
 
                             <a href="tel:+12489737534" className={css.contactItemText} target="_blank" rel="noreferrer">
                                 +1 580 786 4420
@@ -52,7 +53,7 @@ const ContactUs = () => {
                         </li>
 
                         <li className={css.contactItem}>
-                            <BsFillTelephoneFill color="d7d5d5" className={css.contactItemIcon} />
+                            <BsFillTelephoneFill color="157dc7" className={css.contactItemIcon} />
 
                             <a href="tel:+12489737534" className={css.contactItemText} target="_blank" rel="noreferrer">
                                 +1 419 679 4151
@@ -60,7 +61,7 @@ const ContactUs = () => {
                         </li>
 
                         <li className={css.contactItem}>
-                            <BsFillTelephoneFill color="#d7d5d5" className={css.contactItemIcon} />
+                            <BsFillTelephoneFill color="#157dc7" className={css.contactItemIcon} />
 
                             <a href="tel:+12489737534" className={css.contactItemText} target="_blank" rel="noreferrer">
                                 +1 217 878 4659

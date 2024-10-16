@@ -1,9 +1,5 @@
 .contact {
-    padding: 64px 0;
-
-    background-image: url("../../images/contacts-hero.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    padding: 32px 0;
 }
 
 .contactTitle {
@@ -71,12 +67,12 @@
 }
 
 .contactItemText:hover {
-    color: #fff;
+    color: #157dc7;
 }
 
 @media screen and (min-width: 768px) {
     .contact {
-        padding: 128px 0 64px;
+        padding: 32px 0 64px;
     }
 
     .contactTitle {
@@ -118,7 +114,7 @@
 
 @media screen and (min-width: 1440px) {
     .contact {
-        padding: 164px 0 96px;
+        padding: 32px 0 64px;
     }
 
     .contactTitle {
