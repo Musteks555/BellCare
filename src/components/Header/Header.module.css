@@ -50,6 +50,33 @@
     color: #157dc7;
 }
 
+.headerContactsContainer {
+    display: none;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.headerContacts {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.headerContactsIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.headerContactsText {
+    color: #0e2b3d;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    transition: color 0.2s ease-in-out;
+}
+
 .headerFavorites {
     position: relative;
 }
@@ -355,6 +382,10 @@
 
     .headerNav {
         display: block;
+    }
+
+    .headerContactsContainer {
+        display: flex;
     }
 
     .headerFavoritesIcon {

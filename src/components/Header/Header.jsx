@@ -76,6 +76,24 @@ const Header = () => {
                         </ul>
                     </nav>
 
+                    <div className={css.headerContactsContainer}>
+                        <div className={css.headerContacts}>
+                            <BsFillTelephoneFill color="157DC7" className={css.headerContactsIcon} />
+
+                            <a href="tel:+12489737534" className={css.headerContactsText} target="_blank" rel="noreferrer">
+                                +1 248 973 7534
+                            </a>
+                        </div>
+
+                        <div className={css.headerContacts}>
+                            <IoMail color="157DC7" className={css.headerContactsIcon} />
+
+                            <a href="mailto:hello@bellcare-line.com" className={css.headerContactsText} target="_blank" rel="noreferrer">
+                                hello@bellcare-line.com
+                            </a>
+                        </div>
+                    </div>
+
                     <Link to={"/favorites"} className={css.headerFavorites}>
                         <FaRegHeart className={css.headerFavoritesIcon} color="157DC7" />
 
