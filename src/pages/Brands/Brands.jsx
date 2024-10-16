@@ -6,7 +6,7 @@ const Brands = () => {
     return (
         <>
             <DocumentTitle>Brands</DocumentTitle>
-            <div>Brands</div>;
+            <div>Brands</div>
         </>
     );
 };

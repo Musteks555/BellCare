@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import { FaRegHeart } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BiSearchAlt } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { IoMail } from "react-icons/io5";
 
 import Container from "../Container/Container";
 
@@ -14,6 +16,7 @@ import css from "./Header.module.css";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -22,6 +25,10 @@ const Header = () => {
     const closeMenu = () => {
         setIsMenuOpen(false);
     };
+
+    useEffect(() => {
+        closeMenu();
+    }, [location]);
 
     return (
         <header className={css.header}>
@@ -34,6 +41,40 @@ const Header = () => {
                     <Link to={"/"} className={css.headerLogo}>
                         <img src={logo} alt="logo" className={css.headerLogoImage} />
                     </Link>
+
+                    <nav className={css.headerNav}>
+                        <ul className={css.headerNavList}>
+                            <li className={css.headerNavItem}>
+                                <Link to="/categories" className={css.headerNavLink}>
+                                    Categories
+                                </Link>
+                            </li>
+
+                            <li className={css.headerNavItem}>
+                                <Link to="/brands" className={css.headerNavLink}>
+                                    Brands
+                                </Link>
+                            </li>
+
+                            <li className={css.headerNavItem}>
+                                <Link to="/manufacturers" className={css.headerNavLink}>
+                                    Manufacturers
+                                </Link>
+                            </li>
+
+                            <li className={css.headerNavItem}>
+                                <Link to="/about" className={css.headerNavLink}>
+                                    About us
+                                </Link>
+                            </li>
+
+                            <li className={css.headerNavItem}>
+                                <Link to="/contacts" className={css.headerNavLink}>
+                                    Contact us
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
 
                     <Link to={"/favorites"} className={css.headerFavorites}>
                         <FaRegHeart className={css.headerFavoritesIcon} color="157DC7" />
@@ -87,7 +128,7 @@ const Header = () => {
                         </li>
 
                         <li className={css.headerSideMenuItem}>
-                            <Link to="/contact" className={css.headerSideMenuLink}>
+                            <Link to="/contacts" className={css.headerSideMenuLink}>
                                 Contact us
                             </Link>
                         </li>
@@ -95,13 +136,26 @@ const Header = () => {
                 </nav>
 
                 <div className={css.headerSideMenuContactsContainer}>
-                    <a href="tel:+12489737534" className={css.headerSideMenuContactsText} target="_blank" rel="noreferrer">
-                        +1 248 973 7534
-                    </a>
+                    <div className={css.headerSideMenuContacts}>
+                        <BsFillTelephoneFill color="157DC7" className={css.headerSideMenuContactsIcon} />
 
-                    <a href="mailto:hello@bellcare-line.com" className={css.headerSideMenuContactsText} target="_blank" rel="noreferrer">
-                        hello@bellcare-line.com
-                    </a>
+                        <a href="tel:+12489737534" className={css.headerSideMenuContactsText} target="_blank" rel="noreferrer">
+                            +1 248 973 7534
+                        </a>
+                    </div>
+
+                    <div className={css.headerSideMenuContacts}>
+                        <IoMail color="157DC7" className={css.headerSideMenuContactsIcon} />
+
+                        <a
+                            href="mailto:hello@bellcare-line.com"
+                            className={css.headerSideMenuContactsText}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            hello@bellcare-line.com
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
