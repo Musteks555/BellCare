@@ -74,7 +74,12 @@
     font-size: 14px;
     font-weight: 500;
     line-height: normal;
+
     transition: color 0.2s ease-in-out;
+}
+
+.headerContactsText:hover {
+    color: #157dc7;
 }
 
 .headerFavorites {
