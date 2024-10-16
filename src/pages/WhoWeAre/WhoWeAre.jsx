@@ -105,8 +105,8 @@ const WhoWeAre = () => {
                                     Bell<span>Care</span>
                                 </b>
                                 , our mission is to be your go-to online destination for pharmaceutical needs. We are dedicated to providing
-                                tailored solutions for your business, ensuring that when it's time to restock, we're the first name that
-                                comes to mind.
+                                tailored solutions for your business, ensuring that when it&apos;s time to restock, we&apos;re the first
+                                name that comes to mind.
                             </p>
                         </li>
 
