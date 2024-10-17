@@ -1,0 +1,54 @@
+.manufacture {
+    padding: 32px 0;
+}
+
+.manufactureTitle {
+    font-size: 34px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.manufactureList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 16px 8px;
+}
+
+@media screen and (min-width: 768px) {
+    .manufacture {
+        padding: 32px 0 64px;
+    }
+
+    .manufactureTitle {
+        font-size: 40px;
+
+        margin-bottom: 48px;
+    }
+
+    .manufactureList {
+        gap: 32px 16px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .manufacture {
+        padding: 32px 0 64px;
+    }
+
+    .manufactureTitle {
+        font-size: 50px;
+
+        margin-bottom: 56px;
+    }
+
+    .manufactureList {
+        gap: 48px 24px;
+    }
+}

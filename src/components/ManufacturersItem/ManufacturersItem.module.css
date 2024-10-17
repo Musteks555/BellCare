@@ -1,0 +1,29 @@
+.manufacturerItemLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 16px;
+
+    transition: transform 0.3s ease;
+}
+
+.manufacturerItemLink:hover {
+    transform: scale(1.1);
+}
+
+.manufacturerItemText {
+    font-size: 24px;
+    line-height: normal;
+    color: #157dc7;
+    font-weight: 400;
+    text-align: center;
+
+    padding: 8px 16px;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1440px) {
+}

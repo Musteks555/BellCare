@@ -45,6 +45,7 @@
 
     .categoryDescription {
         font-size: 18px;
+        margin-bottom: 40px;
     }
 
     .categoryList {
@@ -65,5 +66,6 @@
 
     .categoryDescription {
         font-size: 20px;
+        margin-bottom: 48px;
     }
 }
