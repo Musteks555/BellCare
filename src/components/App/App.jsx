@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router";
 
 import Layout from "../Layout/Layout";
 import SharedLayout from "../SharedLayout/SharedLayout";
+import ScrollTop from "../ScrollTop/ScrollTop";
 
 const Home = lazy(() => import("../../pages/Home/Home"));
 const Categories = lazy(() => import("../../pages/Categories/Categories"));
@@ -20,6 +21,7 @@ function App() {
     return (
         <Layout>
             <SharedLayout>
+                <ScrollTop />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/categories" element={<Categories />} />
