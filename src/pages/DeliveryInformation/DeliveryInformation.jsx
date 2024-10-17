@@ -14,7 +14,7 @@ const DeliveryInformation = () => {
 
                     <ul className={css.deliveryList}>
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>MAIN INFORMATION</h3>
+                            <h2 className={css.deliveryItemTitle}>MAIN INFORMATION</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
@@ -26,7 +26,7 @@ const DeliveryInformation = () => {
                                     dispatch your order quickly.
                                 </p>
 
-                                <h4 className={css.deliveryItemSubTitle}>Our working hours are:</h4>
+                                <h3 className={css.deliveryItemSubTitle}>Our working hours are:</h3>
 
                                 <ul className={css.deliverySubList}>
                                     <li className={css.deliverySubItem}>
@@ -41,7 +41,7 @@ const DeliveryInformation = () => {
                         </li>
 
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>COURIER & DELIVERY TIME</h3>
+                            <h2 className={css.deliveryItemTitle}>COURIER & DELIVERY TIME</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
@@ -49,7 +49,7 @@ const DeliveryInformation = () => {
                                     signature is required upon delivery for security.
                                 </p>
 
-                                <h4 className={css.deliveryItemSubTitle}>Delivery time frames are as follows:</h4>
+                                <h3 className={css.deliveryItemSubTitle}>Delivery time frames are as follows:</h3>
 
                                 <ul className={css.deliverySubList}>
                                     <li className={css.deliverySubItem}>
@@ -77,7 +77,7 @@ const DeliveryInformation = () => {
                         </li>
 
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>LOST PARCELS & DELAYED SHIPMENTS</h3>
+                            <h2 className={css.deliveryItemTitle}>LOST PARCELS & DELAYED SHIPMENTS</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
@@ -92,7 +92,7 @@ const DeliveryInformation = () => {
                         </li>
 
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>RETURN POLICY</h3>
+                            <h2 className={css.deliveryItemTitle}>RETURN POLICY</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
@@ -109,7 +109,7 @@ const DeliveryInformation = () => {
                                     </li>
 
                                     <li className={css.deliverySubItem}>
-                                        <p className={css.deliveryItemText}>he product arrived damaged.</p>
+                                        <p className={css.deliveryItemText}>The product arrived damaged.</p>
                                     </li>
                                 </ul>
 
@@ -129,7 +129,7 @@ const DeliveryInformation = () => {
                         </li>
 
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>REFUND</h3>
+                            <h2 className={css.deliveryItemTitle}>REFUND</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
@@ -140,7 +140,7 @@ const DeliveryInformation = () => {
                         </li>
 
                         <li className={css.deliveryItem}>
-                            <h3 className={css.deliveryItemTitle}>COMPLAINTS AND SUGGESTIONS</h3>
+                            <h2 className={css.deliveryItemTitle}>COMPLAINTS AND SUGGESTIONS</h2>
 
                             <div className={css.deliveryItemContainer}>
                                 <p className={css.deliveryItemText}>
