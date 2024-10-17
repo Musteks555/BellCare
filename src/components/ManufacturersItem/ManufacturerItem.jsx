@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 import css from "./ManufacturersItem.module.css";
 
-const ManufacturerItem = ({ text, path }) => {
+const ManufacturerItem = ({ text }) => {
     return (
-        <Link to={path} className={css.manufacturerItemLink}>
+        <Link to={`/catalog?manufacturers=${text}`} className={css.manufacturerItemLink}>
             <p className={css.manufacturerItemText}>{text}</p>
         </Link>
     );
