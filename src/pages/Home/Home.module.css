@@ -1,0 +1,83 @@
+.homeHero {
+    padding: 400px 0 50px;
+
+    background-image: url("../../images/home-hero.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.homeHeroLink {
+    font-size: 24px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    width: fit-content;
+
+    border: 1px solid #0e2b3d;
+    border-radius: 12px;
+
+    padding: 12px 24px;
+    margin: 0 auto;
+
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.homeHeroLink:hover {
+    background-color: #0e2b3d;
+    color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.homeHeroLink svg {
+    transition: transform 0.3s ease;
+}
+
+.homeHeroLink:hover svg {
+    transform: translateX(15px);
+}
+
+.homeTitle {
+    font-size: 28px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.homeBestsellers {
+    padding: 100px 0;
+}
+
+.homeOrder {
+    padding: 100px 0;
+}
+
+@media screen and (min-width: 768px) {
+    .homeHero {
+        padding: 400px 0 50px;
+    }
+
+    .homeHeroLink {
+        font-size: 32px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .homeHero {
+        padding: 250px 0 250px;
+    }
+
+    .homeHeroLink {
+        font-size: 40px;
+
+        margin: 0 0 0 auto;
+    }
+}
