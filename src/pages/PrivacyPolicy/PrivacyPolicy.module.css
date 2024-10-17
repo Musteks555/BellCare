@@ -1,0 +1,216 @@
+.privacy {
+    padding: 32px 0;
+}
+
+.privacyTitle {
+    font-size: 30px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.privacyDescription {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0e2b3d;
+
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.privacyNameColor {
+    text-shadow: 0.7px 0.7px 1px #0000008a;
+    color: #157dc7;
+}
+
+.privacyNameColor span {
+    color: #1f9b60;
+}
+
+.privacySubTitle {
+    font-size: 28px;
+    line-height: normal;
+    color: #0e2b3d;
+    font-weight: 600;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.privacySubTitle strong {
+    text-shadow: 0.7px 0.7px 1px #0000008a;
+    color: #157dc7;
+}
+
+.privacySubTitle strong span {
+    color: #1f9b60;
+}
+
+.privacyList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.privacyItem {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.privacyItemTitle {
+    font-size: 20px;
+    line-height: normal;
+    font-weight: 600;
+    color: #0e2b3d;
+}
+
+.privacyItemContainer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding-left: 16px;
+}
+
+.privacyItemText {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0e2b3d;
+}
+
+.privacyItemSubTitle {
+    font-size: 18px;
+    line-height: normal;
+    font-weight: 600;
+    color: #0e2b3d;
+}
+
+.privacySubList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    list-style: disc;
+    padding-left: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .privacy {
+        padding: 32px 0 64px;
+    }
+
+    .privacyTitle {
+        font-size: 36px;
+
+        margin-bottom: 48px;
+    }
+
+    .privacyDescription {
+        font-size: 18px;
+
+        margin-bottom: 48px;
+    }
+
+    .privacySubTitle {
+        font-size: 30px;
+
+        margin-bottom: 48px;
+    }
+
+    .privacyList {
+        gap: 32px;
+    }
+
+    .privacyItem {
+        gap: 18px;
+    }
+
+    .privacyItemTitle {
+        font-size: 22px;
+    }
+
+    .privacyItemContainer {
+        gap: 18px;
+
+        padding-left: 24px;
+    }
+
+    .privacyItemText {
+        font-size: 18px;
+    }
+
+    .privacyItemSubTitle {
+        font-size: 20px;
+    }
+
+    .privacySubList {
+        gap: 18px;
+
+        padding-left: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .privacy {
+        padding: 32px 0 64px;
+    }
+
+    .privacyTitle {
+        font-size: 44px;
+
+        margin-bottom: 56px;
+    }
+
+    .privacyDescription {
+        font-size: 20px;
+
+        margin-bottom: 64px;
+    }
+
+    .privacySubTitle {
+        font-size: 30px;
+
+        margin-bottom: 48px;
+    }
+
+    .privacyList {
+        gap: 40px;
+    }
+
+    .privacyItem {
+        gap: 24px;
+    }
+
+    .privacyItemTitle {
+        font-size: 24px;
+    }
+
+    .privacyItemContainer {
+        gap: 24px;
+
+        padding-left: 32px;
+    }
+
+    .privacyItemText {
+        font-size: 20px;
+    }
+
+    .privacyItemSubTitle {
+        font-size: 22px;
+    }
+
+    .privacySubList {
+        gap: 24px;
+
+        padding-left: 32px;
+    }
+}
