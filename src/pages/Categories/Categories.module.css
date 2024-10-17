@@ -32,53 +32,6 @@
     gap: 32px;
 }
 
-.categoryItemLink {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 16px;
-
-    transition: transform 0.3s ease;
-}
-
-.categoryItemLink:hover {
-    transform: scale(1.05);
-}
-
-.categoryItemImgContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 1px solid #157dc7;
-    border-radius: 50%;
-
-    padding: 40px;
-}
-
-.categoryItemImg {
-    width: 150px;
-    height: 150px;
-
-    fill: #157dc7;
-    stroke: #157dc7;
-
-    transition: transform 0.3s ease;
-}
-
-.categoryItemLink:hover .categoryItemImg {
-    transform: rotate(10deg);
-}
-
-.categoryItemText {
-    font-size: 30px;
-    line-height: normal;
-    color: #157dc7;
-    font-weight: 400;
-    text-align: center;
-}
-
 @media screen and (min-width: 768px) {
     .category {
         padding: 32px 0 64px;

@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-
 import Container from "../../components/Container/Container";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
+import CategoryItem from "../../components/CategoryItem/CategoryItem";
 
 import AllergyIcon from "../../images/allergy.svg?react";
 import CardiologyIcon from "../../images/cardiology.svg?react";
@@ -24,6 +23,27 @@ import OphthalmologyIcon from "../../images/ophthalmology.svg?react";
 
 import css from "./Categories.module.css";
 
+const categories = [
+    { path: "", icon: AllergyIcon, text: "Allergy" },
+    { path: "", icon: CardiologyIcon, text: "Cardiology" },
+    { path: "", icon: DermatologyIcon, text: "Dermatology" },
+    { path: "", icon: EndocrinologyIcon, text: "Endocrinology" },
+    { path: "", icon: FertilityIcon, text: "Fertility" },
+    { path: "", icon: GastroenterologyIcon, text: "Gastroenterology" },
+    { path: "", icon: HematologyIcon, text: "Hematology" },
+    { path: "", icon: InfectionDiseaseIcon, text: "Infection Disease" },
+    { path: "", icon: NeurologyIcon, text: "Neurology" },
+    { path: "", icon: ObgynIcon, text: "OBGYN" },
+    { path: "", icon: OncologyIcon, text: "Oncology" },
+    { path: "", icon: PulmonologyIcon, text: "Pulmonology" },
+    { path: "", icon: RheumatologyIcon, text: "Rheumatology" },
+    { path: "", icon: SugarControlIcon, text: "Sugar Control" },
+    { path: "", icon: UrologyIcon, text: "Urology" },
+    { path: "", icon: WeightLossIcon, text: "Weight Loss" },
+    { path: "", icon: ErectileDysfunctionIcon, text: "Erectile Dysfunction" },
+    { path: "", icon: OphthalmologyIcon, text: "Ophthalmology" },
+];
+
 const Categories = () => {
     return (
         <>
@@ -40,185 +60,11 @@ const Categories = () => {
                     </p>
 
                     <ul className={css.categoryList}>
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <AllergyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Allergy</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <CardiologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Cardiology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <DermatologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Dermatology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <EndocrinologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Endocrinology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <FertilityIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Fertility</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <GastroenterologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Gastroenterology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <HematologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Hematology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <InfectionDiseaseIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Infection Disease</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <NeurologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Neurology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <ObgynIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>OBGYN</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <OncologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Oncology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <PulmonologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Pulmonology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <RheumatologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Rheumatology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <SugarControlIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Sugar Control</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <UrologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Urology</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <WeightLossIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Weight Loss</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <ErectileDysfunctionIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Erectile Dysfunction</p>
-                            </Link>
-                        </li>
-
-                        <li className={css.categoryItem}>
-                            <Link to={""} className={css.categoryItemLink}>
-                                <div className={css.categoryItemImgContainer}>
-                                    <OphthalmologyIcon className={css.categoryItemImg} />
-                                </div>
-
-                                <p className={css.categoryItemText}>Ophthalmology</p>
-                            </Link>
-                        </li>
+                        {categories.map(({ icon, text, path }, index) => (
+                            <li key={index} className={css.categoryItem}>
+                                <CategoryItem icon={icon} text={text} path={path} />
+                            </li>
+                        ))}
                     </ul>
                 </Container>
             </section>
