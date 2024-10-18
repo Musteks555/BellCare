@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import Container from "../../components/Container/Container";
 import CatalogItem from "../../components/CatalogItem/CatalogItem";
 import Pagination from "../../components/Pagination/Pagination";
+import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
 import css from "./Catalog.module.css";
 
@@ -65,27 +66,31 @@ const Catalog = () => {
     };
 
     return (
-        <section className={css.catalog}>
-            <Container>
-                {loading ? (
-                    <Loader />
-                ) : data ? (
-                    <>
-                        <ul className={css.catalogList}>
-                            {data.map((item) => (
-                                <li key={item.id} className={css.catalogItem}>
-                                    <CatalogItem img={item.img} name={item.name} />
-                                </li>
-                            ))}
-                        </ul>
+        <>
+            <DocumentTitle>Catalog</DocumentTitle>
 
-                        <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
-                    </>
-                ) : (
-                    <p>No data available.</p>
-                )}
-            </Container>
-        </section>
+            <section className={css.catalog}>
+                <Container>
+                    {loading ? (
+                        <Loader />
+                    ) : data ? (
+                        <>
+                            <ul className={css.catalogList}>
+                                {data.map((item) => (
+                                    <li key={item.id} className={css.catalogItem}>
+                                        <CatalogItem img={item.img} name={item.name} id={item.id} />
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
+                        </>
+                    ) : (
+                        <p>No data available.</p>
+                    )}
+                </Container>
+            </section>
+        </>
     );
 };
 

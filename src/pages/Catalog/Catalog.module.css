@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 768px) {
     .catalog {
-        padding: 48px;
+        padding: 48px 0;
     }
 
     .catalogList {

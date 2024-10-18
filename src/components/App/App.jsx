@@ -10,6 +10,7 @@ const Categories = lazy(() => import("../../pages/Categories/Categories"));
 const Brands = lazy(() => import("../../pages/Brands/Brands"));
 const Manufacturers = lazy(() => import("../../pages/Manufacturers/Manufacturers"));
 const Catalog = lazy(() => import("../../pages/Catalog/Catalog"));
+const Product = lazy(() => import("../../pages/Product/Product"));
 const WhoWeAre = lazy(() => import("../../pages/WhoWeAre/WhoWeAre"));
 const ContactUs = lazy(() => import("../../pages/ContactUs/ContactUs"));
 const Favorites = lazy(() => import("../../pages/Favorites/Favorites"));
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/brands" element={<Brands />} />
                     <Route path="/manufacturers" element={<Manufacturers />} />
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/product/:id" element={<Product />} />
                     <Route path="/about" element={<WhoWeAre />} />
                     <Route path="/contacts" element={<ContactUs />} />
                     <Route path="/favorites" element={<Favorites />} />

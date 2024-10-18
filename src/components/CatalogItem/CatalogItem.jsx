@@ -6,7 +6,7 @@ import HeartIcon from "../../images/heart.svg?react";
 
 import css from "./CatalogItem.module.css";
 
-const CatalogItem = ({ img, name }) => {
+const CatalogItem = ({ img, name, id }) => {
     const [isLiked, setIsLiked] = useState(false);
 
     const handleLikeClick = (event) => {
@@ -16,7 +16,7 @@ const CatalogItem = ({ img, name }) => {
     };
 
     return (
-        <Link className={css.catalogItemLink}>
+        <Link to={`/product/${id}`} className={css.catalogItemLink}>
             <button type="button" className={css.catalogItemBtnLike} onClick={handleLikeClick}>
                 <HeartIcon className={clsx(css.catalogItemBtnLikeIcon, { [css.catalogItemBtnLikeIconActive]: isLiked })} />
             </button>
