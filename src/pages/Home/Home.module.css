@@ -1,5 +1,5 @@
 .homeHero {
-    padding: 400px 0 50px;
+    padding: 200px 0 50px;
 
     background-image: url("../../images/home-hero.png");
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@
 .homeHeroLink {
     font-size: 24px;
     line-height: normal;
-    color: #0e2b3d;
+    color: #fff;
     font-weight: 700;
 
     display: flex;
@@ -23,6 +23,8 @@
     border: 1px solid #0e2b3d;
     border-radius: 12px;
 
+    background-color: #0e2b3d;
+
     padding: 12px 24px;
     margin: 0 auto;
 
@@ -30,9 +32,9 @@
 }
 
 .homeHeroLink:hover {
-    background-color: #0e2b3d;
-    color: #fff;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+    color: #0e2b3d;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .homeHeroLink svg {
@@ -131,7 +133,7 @@
 
 @media screen and (min-width: 768px) {
     .homeHero {
-        padding: 400px 0 50px;
+        padding: 200px 0 50px;
     }
 
     .homeHeroLink {
@@ -172,7 +174,7 @@
 
 @media screen and (min-width: 1440px) {
     .homeHero {
-        padding: 250px 0 250px;
+        padding: 200px 0 200px;
     }
 
     .homeHeroLink {
