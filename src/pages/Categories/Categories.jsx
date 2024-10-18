@@ -24,24 +24,24 @@ import OphthalmologyIcon from "../../images/ophthalmology.svg?react";
 import css from "./Categories.module.css";
 
 const categories = [
-    { path: "/", icon: AllergyIcon, text: "Allergy" },
-    { path: "/", icon: CardiologyIcon, text: "Cardiology" },
-    { path: "/", icon: DermatologyIcon, text: "Dermatology" },
-    { path: "/", icon: EndocrinologyIcon, text: "Endocrinology" },
-    { path: "/", icon: FertilityIcon, text: "Fertility" },
-    { path: "/", icon: GastroenterologyIcon, text: "Gastroenterology" },
-    { path: "/", icon: HematologyIcon, text: "Hematology" },
-    { path: "/", icon: InfectionDiseaseIcon, text: "Infection Disease" },
-    { path: "/", icon: NeurologyIcon, text: "Neurology" },
-    { path: "/", icon: ObgynIcon, text: "OBGYN" },
-    { path: "/", icon: OncologyIcon, text: "Oncology" },
-    { path: "/", icon: PulmonologyIcon, text: "Pulmonology" },
-    { path: "/", icon: RheumatologyIcon, text: "Rheumatology" },
-    { path: "/", icon: SugarControlIcon, text: "Sugar Control" },
-    { path: "/", icon: UrologyIcon, text: "Urology" },
-    { path: "/", icon: WeightLossIcon, text: "Weight Loss" },
-    { path: "/", icon: ErectileDysfunctionIcon, text: "Erectile Dysfunction" },
-    { path: "/", icon: OphthalmologyIcon, text: "Ophthalmology" },
+    { icon: AllergyIcon, text: "Allergy" },
+    { icon: CardiologyIcon, text: "Cardiology" },
+    { icon: DermatologyIcon, text: "Dermatology" },
+    { icon: EndocrinologyIcon, text: "Endocrinology" },
+    { icon: FertilityIcon, text: "Fertility" },
+    { icon: GastroenterologyIcon, text: "Gastroenterology" },
+    { icon: HematologyIcon, text: "Hematology" },
+    { icon: InfectionDiseaseIcon, text: "Infection Disease" },
+    { icon: NeurologyIcon, text: "Neurology" },
+    { icon: ObgynIcon, text: "OBGYN" },
+    { icon: OncologyIcon, text: "Oncology" },
+    { icon: PulmonologyIcon, text: "Pulmonology" },
+    { icon: RheumatologyIcon, text: "Rheumatology" },
+    { icon: SugarControlIcon, text: "Sugar Control" },
+    { icon: UrologyIcon, text: "Urology" },
+    { icon: WeightLossIcon, text: "Weight Loss" },
+    { icon: ErectileDysfunctionIcon, text: "Erectile Dysfunction" },
+    { icon: OphthalmologyIcon, text: "Ophthalmology" },
 ];
 
 const Categories = () => {
@@ -60,9 +60,9 @@ const Categories = () => {
                     </p>
 
                     <ul className={css.categoryList}>
-                        {categories.map(({ icon, text, path }, index) => (
+                        {categories.map(({ icon, text }, index) => (
                             <li key={index} className={css.categoryItem}>
-                                <CategoryItem icon={icon} text={text} path={path} />
+                                <CategoryItem icon={icon} text={text} />
                             </li>
                         ))}
                     </ul>

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 import css from "./CategoryItem.module.css";
 
-const CategoryItem = ({ icon: Icon, text, path }) => {
+const CategoryItem = ({ icon: Icon, text }) => {
     return (
-        <Link to={path} className={css.categoryItemLink}>
+        <Link to={`/catalog?category=${text}`} className={css.categoryItemLink}>
             <div className={css.categoryItemImgContainer}>
                 <Icon className={css.categoryItemImg} />
             </div>
