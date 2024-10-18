@@ -35,15 +35,6 @@
     border: none;
 }
 
-.catalogItemBtnLike:hover svg {
-    fill: #157dc7;
-}
-
-/* .catalogItemBtnLike:focus svg,
-.catalogItemBtnLike:active svg {
-    fill: #fff;
-} */
-
 .catalogItemBtnLikeIcon {
     width: 25px;
     height: 24px;
@@ -74,10 +65,4 @@
 }
 
 @media screen and (min-width: 1440px) {
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .catalogItemBtnLike:focus .catalogItemBtnLikeIcon {
-        fill: #157dc7;
-    }
 }
