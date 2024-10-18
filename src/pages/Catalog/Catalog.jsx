@@ -57,18 +57,6 @@ const Catalog = () => {
         setCurrentPage(page);
     };
 
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage((prev) => prev - 1);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage((prev) => prev + 1);
-        }
-    };
-
     return (
         <section className={css.catalog}>
             <Container>
@@ -84,13 +72,7 @@ const Catalog = () => {
                             ))}
                         </ul>
 
-                        <Pagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            handlePageChange={handlePageChange}
-                            handlePreviousPage={handlePreviousPage}
-                            handleNextPage={handleNextPage}
-                        />
+                        <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
                     </>
                 ) : (
                     <p>No data available.</p>

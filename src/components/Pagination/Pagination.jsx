@@ -1,39 +1,73 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import css from "./Pagination.module.css";
+import clsx from "clsx";
 
-const Pagination = ({ currentPage, totalPages, handlePageChange, handlePreviousPage, handleNextPage }) => {
-    const maxVisiblePages = 3;
+const Pagination = ({ currentPage, totalPages, handlePageChange }) => {
+    const maxPagesToShow = 3;
 
-    let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
-    let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
+    const getPageNumbers = () => {
+        const pages = [];
+        let startPage = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
+        let endPage = startPage + maxPagesToShow - 1;
 
-    if (endPage - startPage < maxVisiblePages - 1) {
-        startPage = Math.max(endPage - maxVisiblePages + 1, 1);
-    }
+        if (endPage > totalPages) {
+            endPage = totalPages;
+            startPage = Math.max(endPage - maxPagesToShow + 1, 1);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(i);
+        }
+
+        return pages;
+    };
+
+    const pages = getPageNumbers();
 
     return (
-        <div className={css.pagination}>
-            <button onClick={handlePreviousPage} className={css.paginationButton} disabled={currentPage === 1}>
-                <FaArrowLeft className={css.paginationArrow} />
-            </button>
-
-            {Array.from({ length: endPage - startPage + 1 }, (_, index) => {
-                const pageNumber = startPage + index;
-                return (
-                    <button
-                        key={pageNumber}
-                        className={`${css.paginationButton} ${pageNumber === currentPage ? css.active : ""}`}
-                        onClick={() => handlePageChange(pageNumber)}
-                    >
-                        {pageNumber}
+        totalPages > 1 && (
+            <div className={css.pagination}>
+                {currentPage > 1 && (
+                    <button className={css.paginationButton} onClick={() => handlePageChange(currentPage - 1)}>
+                        <FaArrowLeft className={css.paginationArrow} />
                     </button>
-                );
-            })}
+                )}
 
-            <button onClick={handleNextPage} className={css.paginationButton} disabled={currentPage === totalPages}>
-                <FaArrowRight className={css.paginationArrow} />
-            </button>
-        </div>
+                {pages[0] > 1 && (
+                    <>
+                        <button className={css.paginationButton} onClick={() => handlePageChange(1)}>
+                            1
+                        </button>
+                        {pages[0] > 2 && <span className={css.paginationEllipsis}>...</span>}
+                    </>
+                )}
+
+                {pages.map((page) => (
+                    <button
+                        key={page}
+                        className={currentPage === page ? clsx(css.paginationButtonActive, css.paginationButton) : css.paginationButton}
+                        onClick={() => handlePageChange(page)}
+                    >
+                        {page}
+                    </button>
+                ))}
+
+                {pages[pages.length - 1] < totalPages && (
+                    <>
+                        {pages[pages.length - 1] < totalPages - 1 && <span className={css.paginationEllipsis}>...</span>}
+                        <button className={css.paginationButton} onClick={() => handlePageChange(totalPages)}>
+                            {totalPages}
+                        </button>
+                    </>
+                )}
+
+                {currentPage < totalPages && (
+                    <button className={css.paginationButton} onClick={() => handlePageChange(currentPage + 1)}>
+                        <FaArrowRight className={css.paginationArrow} />
+                    </button>
+                )}
+            </div>
+        )
     );
 };
 
