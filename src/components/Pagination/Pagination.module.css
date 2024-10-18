@@ -1,0 +1,102 @@
+.pagination {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 64px;
+}
+
+.paginationButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    color: #157dc7;
+    font-family: "Montserrat", sans-serif;
+
+    background-color: #fff;
+
+    border: 1px solid #157dc7;
+    border-radius: 4px;
+    outline: none;
+
+    padding: 6px 14px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.paginationButton:hover {
+    color: #fff;
+
+    background-color: #157dc7;
+
+    transform: scale(1.05);
+}
+
+.paginationButton.active {
+    background-color: #157dc7;
+
+    color: #fff;
+
+    font-weight: bold;
+}
+
+.paginationButton:not(:disabled):hover svg,
+.paginationButton:not(:disabled):active svg {
+    fill: #fff;
+}
+
+.paginationButton:disabled {
+    color: #ccc;
+
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+
+    cursor: not-allowed;
+}
+
+.paginationArrow {
+    font-size: 20px;
+    color: #157dc7;
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.paginationArrow:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+    .pagination {
+        gap: 16px;
+    }
+
+    .paginationButton {
+        padding: 6px 18px;
+        font-size: 24px;
+    }
+
+    .paginationArrow {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .pagination {
+        gap: 24px;
+    }
+
+    .paginationButton {
+        padding: 8px 22px;
+        font-size: 32px;
+    }
+
+    .paginationArrow {
+        font-size: 32px;
+    }
+}

@@ -2,9 +2,9 @@ import axios from "axios";
 
 const BASE_URL = "https://test.wax-stake.com/";
 
-export const fetchManufacturerByName = async (manufacturerName) => {
+export const fetchManufacturerByName = async (manufacturerName, page = 1) => {
     try {
-        const response = await axios.get(`${BASE_URL}?manufacture=${manufacturerName}`);
+        const response = await axios.get(`${BASE_URL}?manufacture=${manufacturerName}&page=${page}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching manufacturer data:", error);
@@ -12,9 +12,9 @@ export const fetchManufacturerByName = async (manufacturerName) => {
     }
 };
 
-export const fetchCategoryByName = async (categoryName) => {
+export const fetchCategoryByName = async (categoryName, page = 1) => {
     try {
-        const response = await axios.get(`${BASE_URL}?category=${categoryName}`);
+        const response = await axios.get(`${BASE_URL}?category=${categoryName}&page=${page}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching category data:", error);
@@ -22,9 +22,9 @@ export const fetchCategoryByName = async (categoryName) => {
     }
 };
 
-export const fetchBrandByName = async (brandName) => {
+export const fetchBrandByName = async (brandName, page = 1) => {
     try {
-        const response = await axios.get(`${BASE_URL}?brand=${brandName}`);
+        const response = await axios.get(`${BASE_URL}?brand=${brandName}&page=${page}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching brand data:", error);
@@ -32,9 +32,9 @@ export const fetchBrandByName = async (brandName) => {
     }
 };
 
-export const fetchSearchResults = async (searchQuery) => {
+export const fetchSearchResults = async (searchQuery, page = 1) => {
     try {
-        const response = await axios.get(`${BASE_URL}?search=${searchQuery}`);
+        const response = await axios.get(`${BASE_URL}?search=${searchQuery}&page=${page}`);
         return response.data;
     } catch (error) {
         console.error("Error fetching search results:", error);

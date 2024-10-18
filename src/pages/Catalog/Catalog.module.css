@@ -17,10 +17,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.catalogItem:hover {
-    transform: scale(1.05);
-}
-
 @media screen and (min-width: 768px) {
     .catalog {
         padding: 48px;
@@ -46,5 +42,9 @@
 
     .catalogItem {
         width: calc((100% - 64px) / 3);
+    }
+
+    .catalogItem:hover {
+        transform: scale(1.05);
     }
 }
