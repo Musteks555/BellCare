@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { fetchBrandByName, fetchCategoryByName, fetchManufacturerByName, fetchSearchResults } from "../../api/catalog";
 
@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import css from "./Catalog.module.css";
 
 const Catalog = () => {
-    const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,18 +23,20 @@ const Catalog = () => {
         const category = params.get("category");
         const brand = params.get("brand");
         const search = params.get("search");
+        const page = parseInt(searchParams.get("page"), 10) || 1;
 
+        setCurrentPage(page);
         setLoading(true);
         let fetchData;
 
         if (manufacturer) {
-            fetchData = fetchManufacturerByName(manufacturer, currentPage);
+            fetchData = fetchManufacturerByName(manufacturer, page);
         } else if (category) {
-            fetchData = fetchCategoryByName(category, currentPage);
+            fetchData = fetchCategoryByName(category, page);
         } else if (brand) {
-            fetchData = fetchBrandByName(brand, currentPage);
+            fetchData = fetchBrandByName(brand, page);
         } else if (search) {
-            fetchData = fetchSearchResults(search, currentPage);
+            fetchData = fetchSearchResults(search, page);
         } else {
             setData(null);
             setLoading(false);
@@ -51,10 +53,15 @@ const Catalog = () => {
                 console.error("Failed to fetch data:", error);
                 setLoading(false);
             });
-    }, [location.search, currentPage]);
+    }, [searchParams]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        setSearchParams((prevParams) => {
+            const updatedParams = new URLSearchParams(prevParams);
+            updatedParams.set("page", page.toString());
+            return updatedParams;
+        });
     };
 
     return (
