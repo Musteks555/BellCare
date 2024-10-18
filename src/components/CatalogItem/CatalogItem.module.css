@@ -75,3 +75,9 @@
 
 @media screen and (min-width: 1440px) {
 }
+
+@media (hover: hover) and (pointer: fine) {
+    .catalogItemBtnLike:focus .catalogItemBtnLikeIcon {
+        fill: #157dc7;
+    }
+}
