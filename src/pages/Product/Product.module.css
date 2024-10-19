@@ -280,7 +280,7 @@
 
         border-radius: 8px;
 
-        padding: 8px 12px;
+        padding: 8px 20px;
     }
 
     .productBuyBtnLikeIcon {
@@ -359,5 +359,62 @@
         color: #157dc7;
 
         background-color: #fff;
+    }
+
+    .productBuyContainer {
+        gap: 32px;
+
+        padding: 32px 0;
+        margin: 0 0 32px;
+    }
+
+    .productBuyQuantityContainer {
+        gap: 24px;
+    }
+
+    .productBuyQuantityBtn {
+        font-size: 28px;
+
+        width: 50px;
+        height: 50px;
+
+        border-radius: 8px;
+    }
+
+    .productBuyQuantityInput {
+        font-size: 28px;
+
+        width: 50px;
+
+        border-radius: 8px;
+    }
+
+    .productBuyBtn {
+        font-size: 18px;
+
+        gap: 24px;
+
+        max-height: 50px;
+
+        border-radius: 8px;
+
+        padding: 8px 24px;
+
+        transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    .productBuyBtn:hover {
+        color: #fff;
+
+        background-color: #157dc7;
+    }
+
+    .productBuyBtn:hover svg {
+        fill: #fff;
+    }
+
+    .productBuyBtnLikeIcon {
+        width: 40px;
+        height: 38px;
     }
 }
