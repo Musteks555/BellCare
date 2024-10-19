@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 import { fetchProductById } from "../../api/catalog";
 
@@ -8,12 +9,16 @@ import Loader from "../../components/Loader/Loader";
 import Container from "../../components/Container/Container";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
+import HeartIcon from "../../images/heart.svg?react";
+
 import css from "./Product.module.css";
 
 const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [quantity, setQuantity] = useState(1);
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -27,6 +32,27 @@ const Product = () => {
                 setLoading(false);
             });
     }, [id]);
+
+    const handleDecrease = () => {
+        if (quantity > 1) setQuantity(quantity - 1);
+    };
+
+    const handleIncrease = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const handleInputChange = (e) => {
+        const value = parseInt(e.target.value);
+        if (!isNaN(value) && value > 0) {
+            setQuantity(value);
+        }
+    };
+
+    const handleLikeClick = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        setIsLiked((prev) => !prev);
+    };
 
     if (loading) {
         return <Loader />;
@@ -42,35 +68,77 @@ const Product = () => {
                         <div className={css.productContainer}>
                             <img src={`https://test.wax-stake.com/img/${product.img}`} alt={product.name} className={css.productImg} />
 
-                            <h1 className={css.productName}>{product.name}</h1>
-                            {console.log(product.manufacture)}
-                            {product.manufacture ? (
-                                <p className={css.productManufacture}>
-                                    See more by{" "}
-                                    <Link to={`/catalog?category=${product.manufacture}`} className={css.productManufactureLink}>
-                                        {product.manufacture}
-                                    </Link>
-                                </p>
-                            ) : (
-                                ""
-                            )}
+                            <div className={css.productInfoContainer}>
+                                <h1 className={css.productName}>{product.name}</h1>
 
-                            <p className={css.productLabel}>Format</p>
+                                {product.manufacture ? (
+                                    <p className={css.productManufacture}>
+                                        See more by{" "}
+                                        <Link to={`/catalog?manufacture=${product.manufacture}`} className={css.productManufactureLink}>
+                                            {product.manufacture}
+                                        </Link>
+                                    </p>
+                                ) : (
+                                    ""
+                                )}
 
-                            <p className={css.productDescription}>{product.format}</p>
+                                <p className={css.productLabel}>Format:</p>
 
-                            <p className={css.productLabel}>Use for</p>
+                                <p className={css.productDescription}>{product.format}</p>
 
-                            <p className={css.productDescription}>{product.text}</p>
+                                <p className={css.productLabel}>Use for:</p>
 
-                            <p className={css.productLabel}>Note</p>
+                                <p className={css.productDescription}>{product.text}</p>
 
-                            <p className={css.productDescription}>{product.note}</p>
+                                <p className={css.productLabel}>Note:</p>
 
-                            <div className={css.productPriceContainer}>
-                                <p className={css.productLabel}>Price</p>
+                                {product.note.includes("\n") ? (
+                                    <ul className={css.productNoteList}>
+                                        {product.note.split("\n").map((item, index) => (
+                                            <li key={index} className={css.productNoteItem}>
+                                                <p className={css.productNoteItemText}>{item}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p className={css.productDescription}>{product.note}</p>
+                                )}
 
-                                <p className={css.productPrice}>{product.price}</p>
+                                <div className={css.productPriceContainer}>
+                                    <p className={css.productLabel}>Price:</p>
+
+                                    <p className={css.productPrice}>${product.price}</p>
+                                </div>
+
+                                <div className={css.productBuyContainer}>
+                                    <div className={css.productBuyQuantityContainer}>
+                                        <button onClick={handleDecrease} className={css.productBuyQuantityBtn}>
+                                            -
+                                        </button>
+
+                                        <input
+                                            type="text"
+                                            value={quantity}
+                                            onChange={handleInputChange}
+                                            className={css.productBuyQuantityInput}
+                                        />
+
+                                        <button onClick={handleIncrease} className={css.productBuyQuantityBtn}>
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <button type="button" className={css.productBuyBtn} onClick={handleLikeClick}>
+                                        <HeartIcon
+                                            className={clsx(css.productBuyBtnLikeIcon, { [css.productBuyBtnLikeIconActive]: isLiked })}
+                                        />
+                                        {isLiked ? "Remove from Wishlist" : "To Wishlist"}
+                                    </button>
+                                </div>
+
+                                <p className={css.productLabel}>Description:</p>
+
+                                <p className={css.productDescription}>{product.description}</p>
                             </div>
                         </div>
                     ) : (
