@@ -10,6 +10,7 @@ import Container from "../../components/Container/Container";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
 import css from "./Home.module.css";
+import Bestsellers from "../../components/Bestsellers/Bestsellers";
 
 const Home = () => {
     return (
@@ -28,6 +29,8 @@ const Home = () => {
             <section className={css.homeBestsellers}>
                 <Container>
                     <h2 className={css.homeTitle}>OUR BESTSELLERS</h2>
+
+                    <Bestsellers />
                 </Container>
             </section>
 

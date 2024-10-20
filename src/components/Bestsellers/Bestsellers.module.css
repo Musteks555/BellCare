@@ -1,0 +1,35 @@
+.bestsellersList {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding-bottom: 32px;
+
+    overflow: auto;
+}
+
+.bestsellersItem {
+    width: 100%;
+    min-width: calc((100% - 16px) / 2);
+}
+
+@media screen and (min-width: 768px) {
+    .bestsellersList {
+        gap: 32px;
+    }
+
+    .bestsellersItem {
+        min-width: calc((100% - 64px) / 3);
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .bestsellersList {
+        gap: 40px;
+    }
+
+    .bestsellersItem {
+        min-width: calc((100% - 120px) / 4);
+    }
+}

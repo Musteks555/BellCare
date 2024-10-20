@@ -1,0 +1,92 @@
+.bestsellersItemLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 16px;
+
+    transition: transform 0.3s ease;
+
+    position: relative;
+}
+
+.bestsellersItemBtnLike {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background-color: inherit;
+
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    z-index: 10;
+}
+
+.bestsellersItemBtnLike:focus,
+.bestsellersItemBtnLike:active {
+    outline: none;
+    border: none;
+}
+
+.bestsellersItemBtnLikeIcon {
+    width: 25px;
+    height: 24px;
+
+    fill: #fff;
+    stroke: #157dc7;
+
+    transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
+}
+
+.bestsellersItemBtnLikeIconActive {
+    fill: #157dc7;
+}
+
+.bestsellersItemImg {
+    width: 125px;
+    height: 125px;
+}
+
+.bestsellersItemText {
+    font-size: 20px;
+    line-height: normal;
+    color: #157dc7;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .bestsellersItemLink {
+        gap: 24px;
+    }
+
+    .bestsellersItemImg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .bestsellersItemText {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .bestsellersItemLink {
+        gap: 32px;
+    }
+
+    .bestsellersItemLink:hover {
+        transform: scale(1.05);
+    }
+
+    .bestsellersItemImg {
+        width: 200px;
+        height: 200px;
+    }
+
+    .bestsellersItemText {
+        font-size: 28px;
+    }
+}

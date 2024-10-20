@@ -1,0 +1,51 @@
+import { useEffect, useState } from "react";
+
+import { fetchBestsellers } from "../../api/bestsellers";
+
+import BestsellersItem from "../BestsellersItem/BestsellersItem";
+import Loader from "../Loader/Loader";
+
+import css from "./Bestsellers.module.css";
+
+const Bestsellers = () => {
+    const [bestsellers, setBestsellers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadBestsellers = async () => {
+            setLoading(true);
+            try {
+                const data = await fetchBestsellers();
+                const shuffledBestsellers = data.items.sort(() => Math.random() - 0.5);
+                setBestsellers(shuffledBestsellers);
+            } catch (err) {
+                setError("Failed to fetch bestsellers", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadBestsellers();
+    }, []);
+
+    if (loading) {
+        return <Loader />;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    return (
+        <ul className={css.bestsellersList}>
+            {bestsellers.map((item) => (
+                <li key={item.id} className={css.bestsellersItem}>
+                    <BestsellersItem id={item.id} name={item.name} img={item.img} />
+                </li>
+            ))}
+        </ul>
+    );
+};
+
+export default Bestsellers;
