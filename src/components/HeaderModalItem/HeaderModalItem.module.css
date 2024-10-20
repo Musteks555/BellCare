@@ -1,0 +1,46 @@
+.headerSearchResultItemLink {
+    display: flex;
+
+    gap: 8px;
+}
+
+.headerSearchResultItemImg {
+    width: 75px;
+    height: 75px;
+}
+
+.headerSearchResultItemText {
+    color: #157dc7;
+    font-size: 16px;
+    line-height: normal;
+}
+
+@media screen and (min-width: 768px) {
+    .headerSearchResultItemLink {
+        gap: 12px;
+    }
+
+    .headerSearchResultItemImg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .headerSearchResultItemText {
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .headerSearchResultItemLink {
+        gap: 16px;
+    }
+
+    .headerSearchResultItemImg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .headerSearchResultItemText {
+        font-size: 28px;
+    }
+}

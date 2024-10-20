@@ -1,19 +1,8 @@
 import css from "./Container.module.css";
 
-const Container = ({ children, image }) => {
+const Container = ({ children, style }) => {
     return (
-        <div
-            className={css.container}
-            style={
-                image
-                    ? {
-                          backgroundImage: `url(${image})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                      }
-                    : {}
-            }
-        >
+        <div className={css.container} style={style}>
             {children}
         </div>
     );

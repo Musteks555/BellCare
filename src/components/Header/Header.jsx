@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { FaRegHeart } from "react-icons/fa";
@@ -8,7 +8,10 @@ import { RxCross2 } from "react-icons/rx";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoMail } from "react-icons/io5";
 
+import { fetchSearchResults } from "../../api/header";
+
 import Container from "../Container/Container";
+import HeaderModalItem from "../HeaderModalItem/HeaderModalItem";
 
 import logo from "../../images/logo.svg";
 
@@ -16,7 +19,13 @@ import css from "./Header.module.css";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const location = useLocation();
+    const inputRef = useRef(null);
+    const modalRef = useRef(null);
+    const debounceTimeoutRef = useRef(null);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -26,13 +35,55 @@ const Header = () => {
         setIsMenuOpen(false);
     };
 
+    const handleInputChange = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (debounceTimeoutRef.current) {
+            clearTimeout(debounceTimeoutRef.current);
+        }
+
+        debounceTimeoutRef.current = setTimeout(async () => {
+            if (query.length > 2) {
+                try {
+                    const data = await fetchSearchResults(query);
+                    setSearchResults(data.items);
+                    setIsModalOpen(true);
+                } catch (error) {
+                    console.error("Ошибка при получении результатов поиска:", error);
+                }
+            } else {
+                setSearchResults([]);
+                setIsModalOpen(false);
+            }
+        }, 300);
+    };
+
     useEffect(() => {
         closeMenu();
     }, [location]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target) &&
+                inputRef.current &&
+                !inputRef.current.contains(event.target)
+            ) {
+                setIsModalOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <header className={css.header}>
-            <Container>
+            <Container style={{ position: "relative" }}>
                 <div className={css.headerContainer}>
                     <button type="button" className={css.headerBurgerBtn} onClick={toggleMenu}>
                         <RxHamburgerMenu className={css.headerBurgerIcon} color="157DC7" />
@@ -104,10 +155,34 @@ const Header = () => {
                 </div>
 
                 <div className={css.headerSearchContainer}>
-                    <input type="text" className={css.headerSearchInput} placeholder="Search" />
+                    <input
+                        type="text"
+                        className={css.headerSearchInput}
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={handleInputChange}
+                        onFocus={handleInputChange}
+                        ref={inputRef}
+                    />
 
                     <BiSearchAlt className={css.headerSearchIcon} color="157DC7" />
                 </div>
+
+                {isModalOpen && (
+                    <div className={css.headerSearchModal} ref={modalRef}>
+                        {searchResults.length ? (
+                            <ul className={css.headerSearchResultsList}>
+                                {searchResults.map((result) => (
+                                    <li key={result.id} className={css.headerSearchResultItem}>
+                                        <HeaderModalItem result={result} setIsModalOpen={setIsModalOpen} />
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className={css.headerSearchNoResults}>Oops! Nothing matches your search</p>
+                        )}
+                    </div>
+                )}
             </Container>
 
             <div className={`${css.headerSideMenu} ${isMenuOpen ? css.headerSideMenuOpen : ""}`}>
