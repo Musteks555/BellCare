@@ -1,5 +1,6 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 
 const Layout = ({ children }) => {
     return (
@@ -9,6 +10,8 @@ const Layout = ({ children }) => {
             <main>{children}</main>
 
             <Footer />
+
+            <ScrollToTopButton />
         </>
     );
 };
