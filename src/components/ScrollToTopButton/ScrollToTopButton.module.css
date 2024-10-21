@@ -14,7 +14,7 @@
     background-color: #0e2b3d;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-    border: none;
+    border: 1px solid #0e2b3d;
     border-radius: 50%;
 
     opacity: 0;
@@ -31,4 +31,41 @@
 .scrollToTopBtnIcon {
     width: 24px;
     height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .scrollToTopBtn {
+        bottom: 24px;
+        right: 24px;
+
+        padding: 12px;
+    }
+
+    .scrollToTopBtnIcon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .scrollToTopBtn {
+        bottom: 32px;
+        right: 32px;
+
+        padding: 16px;
+
+        transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .scrollToTopBtn:hover {
+        background-color: #fff;
+        border: 1px solid #0e2b3d;
+
+        color: #0e2b3d;
+    }
+
+    .scrollToTopBtnIcon {
+        width: 40px;
+        height: 40px;
+    }
 }
