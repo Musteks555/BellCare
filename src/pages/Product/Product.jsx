@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import toast, { Toaster } from "react-hot-toast";
 
 import { fetchProductById } from "../../api/catalog";
 
@@ -28,6 +29,7 @@ const Product = () => {
                 setLoading(false);
             })
             .catch((error) => {
+                toast.error("Failed to load data. Please try again later.");
                 console.error("Failed to fetch product data:", error);
                 setLoading(false);
             });
@@ -61,6 +63,7 @@ const Product = () => {
     return (
         <>
             <DocumentTitle>Buy {product.name}</DocumentTitle>
+            <Toaster />
 
             <section className={css.product}>
                 <Container>

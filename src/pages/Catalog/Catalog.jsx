@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import { fetchBrandByName, fetchCategoryByName, fetchManufacturerByName, fetchSearchResults } from "../../api/catalog";
 
@@ -65,6 +66,7 @@ const Catalog = () => {
                 setLoading(false);
             })
             .catch((error) => {
+                toast.error("Failed to load data. Please try again later.");
                 console.error("Failed to fetch data:", error);
                 setLoading(false);
             });
@@ -82,6 +84,7 @@ const Catalog = () => {
     return (
         <>
             <DocumentTitle>Catalog</DocumentTitle>
+            <Toaster />
 
             <section className={css.catalog}>
                 <Container>

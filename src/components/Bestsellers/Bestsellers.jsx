@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import { fetchBestsellers } from "../../api/bestsellers";
 
@@ -21,6 +22,7 @@ const Bestsellers = () => {
                 setBestsellers(shuffledBestsellers);
             } catch (err) {
                 setError("Failed to fetch bestsellers", err);
+                toast.error("Failed to load data. Please try again later.");
             } finally {
                 setLoading(false);
             }
@@ -38,13 +40,17 @@ const Bestsellers = () => {
     }
 
     return (
-        <ul className={css.bestsellersList}>
-            {bestsellers.map((item) => (
-                <li key={item.id} className={css.bestsellersItem}>
-                    <BestsellersItem id={item.id} name={item.name} img={item.img} />
-                </li>
-            ))}
-        </ul>
+        <>
+            <Toaster />
+
+            <ul className={css.bestsellersList}>
+                {bestsellers.map((item) => (
+                    <li key={item.id} className={css.bestsellersItem}>
+                        <BestsellersItem id={item.id} name={item.name} img={item.img} />
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 };
 
