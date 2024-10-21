@@ -11,6 +11,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
 import { GoDotFill } from "react-icons/go";
+import NoDataIcon from "../../images/no-data.svg?react";
 
 import css from "./Catalog.module.css";
 
@@ -90,7 +91,7 @@ const Catalog = () => {
                 <Container>
                     {loading ? (
                         <Loader />
-                    ) : data ? (
+                    ) : data.length ? (
                         <>
                             <div className={css.catalogTitleContainer}>
                                 <Link to={`/${titleLink}`} className={css.catalogTitle}>
@@ -113,7 +114,11 @@ const Catalog = () => {
                             <Pagination currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange} />
                         </>
                     ) : (
-                        <p>No data available.</p>
+                        <div className={css.catalogNoDataContainer}>
+                            <NoDataIcon className={css.catalogNoDataImg} />
+
+                            <p className={css.catalogNoDataText}>Sorry, no items found for your request. Please try again later.</p>
+                        </div>
                     )}
                 </Container>
             </section>

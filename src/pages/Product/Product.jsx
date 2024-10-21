@@ -11,6 +11,7 @@ import Container from "../../components/Container/Container";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
 import HeartIcon from "../../images/heart.svg?react";
+import NoDataIcon from "../../images/no-data.svg?react";
 
 import css from "./Product.module.css";
 
@@ -62,7 +63,7 @@ const Product = () => {
 
     return (
         <>
-            <DocumentTitle>Buy {product.name}</DocumentTitle>
+            <DocumentTitle>{product ? `Buy ${product.name}` : "Product not found"}</DocumentTitle>
             <Toaster />
 
             <section className={css.product}>
@@ -145,7 +146,11 @@ const Product = () => {
                             </div>
                         </div>
                     ) : (
-                        <p>Product not found</p>
+                        <div className={css.productNoDataContainer}>
+                            <NoDataIcon className={css.productNoDataImg} />
+
+                            <p className={css.productNoDataText}>Sorry, no product found for your request. Please try again later.</p>
+                        </div>
                     )}
                 </Container>
             </section>

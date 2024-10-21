@@ -11,7 +11,6 @@ import css from "./Bestsellers.module.css";
 const Bestsellers = () => {
     const [bestsellers, setBestsellers] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const loadBestsellers = async () => {
@@ -21,7 +20,7 @@ const Bestsellers = () => {
                 const shuffledBestsellers = data.items.sort(() => Math.random() - 0.5);
                 setBestsellers(shuffledBestsellers);
             } catch (err) {
-                setError("Failed to fetch bestsellers", err);
+                console.log("Failed to fetch bestsellers", err);
                 toast.error("Failed to load data. Please try again later.");
             } finally {
                 setLoading(false);
@@ -33,10 +32,6 @@ const Bestsellers = () => {
 
     if (loading) {
         return <Loader />;
-    }
-
-    if (error) {
-        return <p>{error}</p>;
     }
 
     return (
