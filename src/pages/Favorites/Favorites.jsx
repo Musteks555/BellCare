@@ -1,3 +1,4 @@
+import Container from "../../components/Container/Container";
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
 
 import css from "./Favorites.module.css";
@@ -5,9 +6,11 @@ import css from "./Favorites.module.css";
 const Favorites = () => {
     return (
         <>
-            <DocumentTitle>Favorites</DocumentTitle>
+            <DocumentTitle>Wish List</DocumentTitle>
 
-            <div>Favorites</div>
+            <section className={css.favorites}>
+                <Container></Container>
+            </section>
         </>
     );
 };

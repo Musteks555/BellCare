@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import clsx from "clsx";
 import toast, { Toaster } from "react-hot-toast";
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectWishlistItemById } from "../../redux/wishlist/selector";
+import { addToWishlist, removeFromWishlist, updateWishlistQuantity } from "../../redux/wishlist/slice";
+
 import { fetchProductById } from "../../api/catalog";
 
 import Loader from "../../components/Loader/Loader";
@@ -17,10 +21,12 @@ import css from "./Product.module.css";
 
 const Product = () => {
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const wishlistItem = useSelector(selectWishlistItemById(id));
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [quantity, setQuantity] = useState(1);
-    const [isLiked, setIsLiked] = useState(false);
+    const [quantity, setQuantity] = useState(wishlistItem?.quantity || 1);
+    const [isLiked, setIsLiked] = useState(Boolean(wishlistItem));
 
     useEffect(() => {
         setLoading(true);
@@ -37,24 +43,54 @@ const Product = () => {
     }, [id]);
 
     const handleDecrease = () => {
-        if (quantity > 1) setQuantity(quantity - 1);
+        if (quantity > 1) {
+            setQuantity((prev) => {
+                const newQuantity = prev - 1;
+
+                if (isLiked) {
+                    dispatch(updateWishlistQuantity({ id, quantity: newQuantity }));
+                }
+
+                return newQuantity;
+            });
+        }
     };
 
     const handleIncrease = () => {
-        setQuantity(quantity + 1);
+        setQuantity((prev) => {
+            const newQuantity = prev + 1;
+
+            if (isLiked) {
+                dispatch(updateWishlistQuantity({ id, quantity: newQuantity }));
+            }
+
+            return newQuantity;
+        });
     };
 
     const handleInputChange = (e) => {
         const value = parseInt(e.target.value);
+
         if (!isNaN(value) && value > 0) {
             setQuantity(value);
+
+            if (isLiked) {
+                dispatch(updateWishlistQuantity({ id, quantity: value }));
+            }
         }
     };
 
     const handleLikeClick = (event) => {
         event.stopPropagation();
         event.preventDefault();
+
         setIsLiked((prev) => !prev);
+
+        if (isLiked) {
+            dispatch(removeFromWishlist({ id }));
+        } else {
+            dispatch(addToWishlist({ id, quantity }));
+        }
     };
 
     if (loading) {

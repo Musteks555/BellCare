@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+
+import { selectWishlistItemById } from "../../redux/wishlist/selector";
+import { addToWishlist, removeFromWishlist } from "../../redux/wishlist/slice";
 
 import HeartIcon from "../../images/heart.svg?react";
 
 import css from "./BestsellersItem.module.css";
 
 const BestsellersItem = ({ img, name, id }) => {
-    const [isLiked, setIsLiked] = useState(false);
+    const dispatch = useDispatch();
+    const wishlistItem = useSelector(selectWishlistItemById(id));
+    const [isLiked, setIsLiked] = useState(Boolean(wishlistItem));
+
+    useEffect(() => {
+        setIsLiked(Boolean(wishlistItem));
+    }, [wishlistItem]);
 
     const handleLikeClick = (event) => {
         event.stopPropagation();
         event.preventDefault();
+
         setIsLiked((prev) => !prev);
+
+        if (isLiked) {
+            dispatch(removeFromWishlist({ id }));
+        } else {
+            dispatch(addToWishlist({ id, quantity: 1 }));
+        }
     };
 
     return (
