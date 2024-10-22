@@ -33,6 +33,7 @@ const Header = () => {
     const inputRef = useRef(null);
     const modalRef = useRef(null);
     const wishlistRef = useRef(null);
+    const orderRef = useRef(null);
     const debounceTimeoutRef = useRef(null);
 
     const wishlist = useSelector(selectWishlist);
@@ -92,21 +93,23 @@ const Header = () => {
         };
 
         document.addEventListener("mousedown", handleClickOutside);
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
+        const handleClickOutsideWish = (event) => {
+            if (wishlistRef.current && !wishlistRef.current.contains(event.target) && !orderRef.current?.contains(event.target)) {
                 setIsFavoritesModalOpen(false);
             }
         };
 
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutsideWish);
+
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutsideWish);
         };
     }, []);
 
@@ -293,6 +296,7 @@ const Header = () => {
                     isFavoritesModalOpen={isFavoritesModalOpen}
                     toggleFavoritesModal={toggleFavoritesModal}
                     wishlistRef={wishlistRef}
+                    orderRef={orderRef}
                 />
             </header>
         </>

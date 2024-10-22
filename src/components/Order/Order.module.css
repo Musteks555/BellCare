@@ -1,0 +1,213 @@
+.orderModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 1000;
+}
+
+.orderModalContent {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+
+    width: 100%;
+
+    padding: 16px;
+    margin: 16px;
+
+    border-radius: 8px;
+    background-color: #fff;
+
+    position: relative;
+}
+
+.orderModalCloseBtn {
+    font-size: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 24px;
+    height: 24px;
+
+    background: none;
+    border: none;
+}
+
+.orderModalTitle {
+    font-size: 26px;
+    color: #0e2b3d;
+    font-weight: 600;
+}
+
+.orderModalLabel {
+    display: block;
+
+    font-size: 16px;
+    color: #0e2b3d;
+    font-weight: 500;
+
+    margin-bottom: 16px;
+}
+
+.orderModalInput {
+    font-size: 16px;
+    color: #0e2b3d;
+    font-family: "Montserrat", sans-serif;
+
+    width: 100%;
+
+    padding: 8px 12px;
+    margin-top: 4px;
+
+    border: 1px solid #0e2b3d;
+    border-radius: 4px;
+}
+
+.orderModalInput:focus {
+    outline: none;
+}
+
+.orderModalInput::placeholder {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.orderModalSubmitBtn {
+    display: block;
+
+    color: #fff;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+
+    border: 1px solid #0e2b3d;
+    border-radius: 8px;
+    background-color: #0e2b3d;
+
+    padding: 12px 40px;
+    margin: 0 auto;
+}
+
+.errorMessage {
+    font-size: 14px;
+    color: red;
+
+    margin-bottom: 16px;
+}
+
+@media screen and (min-width: 768px) {
+    .orderModalContent {
+        gap: 24px;
+
+        width: 500px;
+
+        padding: 24px;
+        margin: 0;
+    }
+
+    .orderModalCloseBtn {
+        font-size: 28px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    .orderModalTitle {
+        font-size: 32px;
+    }
+
+    .orderModalLabel {
+        font-size: 20px;
+
+        margin-bottom: 24px;
+    }
+
+    .orderModalInput {
+        font-size: 20px;
+
+        width: 100%;
+
+        padding: 8px 12px;
+        margin-top: 8px;
+
+        border-radius: 4px;
+    }
+
+    .orderModalInput::placeholder {
+        font-size: 20px;
+    }
+
+    .orderModalSubmitBtn {
+        font-size: 24px;
+
+        padding: 12px 80px;
+        margin: 0 auto;
+    }
+
+    .errorMessage {
+        font-size: 18px;
+
+        margin-bottom: 24px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .orderModalContent {
+        gap: 32px;
+
+        width: 600px;
+    }
+
+    .orderModalCloseBtn {
+        font-size: 32px;
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .orderModalTitle {
+        font-size: 36px;
+    }
+
+    .orderModalLabel {
+        font-size: 24px;
+
+        margin-bottom: 32px;
+    }
+
+    .orderModalInput {
+        font-size: 24px;
+    }
+
+    .orderModalInput::placeholder {
+        font-size: 24px;
+    }
+
+    .orderModalSubmitBtn {
+        font-size: 28px;
+
+        padding: 12px 120px;
+    }
+
+    .errorMessage {
+        font-size: 22px;
+
+        margin-bottom: 32px;
+    }
+}

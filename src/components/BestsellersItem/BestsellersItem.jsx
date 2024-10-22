@@ -10,7 +10,7 @@ import HeartIcon from "../../images/heart.svg?react";
 
 import css from "./BestsellersItem.module.css";
 
-const BestsellersItem = ({ img, name, id }) => {
+const BestsellersItem = ({ img, name, id, price }) => {
     const dispatch = useDispatch();
     const wishlistItem = useSelector(selectWishlistItemById(id));
     const [isLiked, setIsLiked] = useState(Boolean(wishlistItem));
@@ -28,7 +28,7 @@ const BestsellersItem = ({ img, name, id }) => {
         if (isLiked) {
             dispatch(removeFromWishlist({ id }));
         } else {
-            dispatch(addToWishlist({ id, quantity: 1 }));
+            dispatch(addToWishlist({ id, quantity: 1, name, price }));
         }
     };
 

@@ -8,14 +8,17 @@ import { RxCross2 } from "react-icons/rx";
 import WishlistIcon from "../../images/wishlist-empty.svg?react";
 
 import Loader from "../Loader/Loader";
+import Order from "../Order/Order";
 
 import css from "./Wishlist.module.css";
 
-const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) => {
+const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef, orderRef }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [wishlist, setwishList] = useState([]);
+    const [wishlist, setWishList] = useState([]);
     const [totalItemsCount, setTotalItemsCount] = useState(0);
     const [totalSum, setTotalSum] = useState(0);
+    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+
     const dispatch = useDispatch();
 
     const fetchWishlistItems = async () => {
@@ -33,7 +36,7 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
                 return { ...product, quantity: wishlistItem ? wishlistItem.quantity : 1 };
             });
 
-            setwishList(updatedWishlist);
+            setWishList(updatedWishlist);
 
             const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
             setTotalItemsCount(totalQuantity);
@@ -57,13 +60,22 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
 
     useEffect(() => {
         calculateTotalSum(wishlist);
+        console.log(wishlist);
     }, [wishlist]);
+
+    const handleOrderClick = () => {
+        setIsOrderModalOpen(true);
+    };
+
+    const handleCloseOrderModal = () => {
+        setIsOrderModalOpen(false);
+    };
 
     const itemsNeededForFreeShipping = 3 - totalItemsCount;
     const isFreeShippingMessageVisible = totalItemsCount < 3;
 
     const handleDecrease = (id) => {
-        setwishList((prevWishlist) => {
+        setWishList((prevWishlist) => {
             const updatedWishlist = prevWishlist.map((item) => {
                 if (item.id === id && item.quantity > 1) {
                     const newQuantity = item.quantity - 1;
@@ -84,7 +96,7 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
     };
 
     const handleIncrease = (id) => {
-        setwishList((prevWishlist) => {
+        setWishList((prevWishlist) => {
             const updatedWishlist = prevWishlist.map((item) => {
                 if (item.id === id) {
                     const newQuantity = item.quantity + 1;
@@ -107,7 +119,7 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
         const value = parseInt(e.target.value);
 
         if (!isNaN(value) && value > 0) {
-            setwishList((prevWishlist) => {
+            setWishList((prevWishlist) => {
                 const updatedWishlist = prevWishlist.map((item) => {
                     if (item.id === id) {
                         dispatch(updateWishlistQuantity({ id, quantity: value }));
@@ -129,7 +141,7 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
     const handleRemoveItem = (id) => {
         dispatch(removeFromWishlist({ id }));
 
-        setwishList((prevWishlist) => {
+        setWishList((prevWishlist) => {
             const updatedWishlist = prevWishlist.filter((item) => item.id !== id);
 
             localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
@@ -142,99 +154,103 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
     };
 
     return (
-        <div ref={wishlistRef} className={`${css.favoritesModal} ${isFavoritesModalOpen ? css.favoritesModalOpen : ""}`}>
-            <button type="button" className={css.favoritesModalCloseBtn} onClick={toggleFavoritesModal}>
-                <RxCross2 className={css.favoritesModalCloseIcon} />
-            </button>
+        <>
+            <div ref={wishlistRef} className={`${css.favoritesModal} ${isFavoritesModalOpen ? css.favoritesModalOpen : ""}`}>
+                <button type="button" className={css.favoritesModalCloseBtn} onClick={toggleFavoritesModal}>
+                    <RxCross2 className={css.favoritesModalCloseIcon} />
+                </button>
 
-            <h2 className={css.favoritesModalTitle}>Wish List</h2>
+                <h2 className={css.favoritesModalTitle}>Wish List</h2>
 
-            {isLoading ? ( // Показываем Loader, если данные загружаются
-                <Loader />
-            ) : (
-                <>
-                    <p className={css.favoritesModalQuantity}>
-                        You have <span>{totalItemsCount} items</span>
-                    </p>
-
-                    {isFreeShippingMessageVisible && (
-                        <p className={css.favoritesModalFreeShipping}>
-                            Add <span>{itemsNeededForFreeShipping}</span> more {itemsNeededForFreeShipping === 1 ? "item" : "items"} for
-                            free shipping
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <p className={css.favoritesModalQuantity}>
+                            You have <span>{totalItemsCount} items</span>
                         </p>
-                    )}
 
-                    <p className={css.favoritesModalTotalSum}>
-                        Total Sum: <span>${totalSum.toFixed(2)}</span>
-                    </p>
+                        {isFreeShippingMessageVisible && (
+                            <p className={css.favoritesModalFreeShipping}>
+                                Add <span>{itemsNeededForFreeShipping}</span> more {itemsNeededForFreeShipping === 1 ? "item" : "items"} for
+                                free shipping
+                            </p>
+                        )}
 
-                    {wishlist.length > 0 ? (
-                        <ul className={css.favoritesModalList}>
-                            {wishlist.map((item) => (
-                                <li key={item.id} className={css.favoritesModalItem}>
-                                    <button className={css.favoritesModalItemBtnRemove} onClick={() => handleRemoveItem(item.id)}>
-                                        <RxCross2 className={css.favoritesModalItemBtnRemoveIcon} />
-                                    </button>
+                        <p className={css.favoritesModalTotalSum}>
+                            Total Sum: <span>${totalSum.toFixed(2)}</span>
+                        </p>
 
-                                    <img
-                                        src={`https://test.wax-stake.com/img/${item.img}`}
-                                        alt={item.name}
-                                        className={css.favoritesModalItemImg}
-                                    />
+                        {wishlist.length > 0 ? (
+                            <ul className={css.favoritesModalList}>
+                                {wishlist.map((item) => (
+                                    <li key={item.id} className={css.favoritesModalItem}>
+                                        <button className={css.favoritesModalItemBtnRemove} onClick={() => handleRemoveItem(item.id)}>
+                                            <RxCross2 className={css.favoritesModalItemBtnRemoveIcon} />
+                                        </button>
 
-                                    <div className={css.favoritesModalItemContainer}>
-                                        <p className={css.favoritesModalItemName}>{item.name}</p>
+                                        <img
+                                            src={`https://test.wax-stake.com/img/${item.img}`}
+                                            alt={item.name}
+                                            className={css.favoritesModalItemImg}
+                                        />
 
-                                        <p className={css.favoritesModalItemPrice}>${item.price}</p>
+                                        <div className={css.favoritesModalItemContainer}>
+                                            <p className={css.favoritesModalItemName}>{item.name}</p>
 
-                                        <div className={css.favoritesModalItemQuantityContainer}>
-                                            <button
-                                                className={css.favoritesModalItemQuantityBtn}
-                                                onClick={() => handleDecrease(item.id, item.quantity)}
-                                            >
-                                                -
-                                            </button>
+                                            <p className={css.favoritesModalItemPrice}>${item.price}</p>
 
-                                            <input
-                                                type="text"
-                                                className={css.favoritesModalItemQuantityInput}
-                                                value={item.quantity}
-                                                onChange={(e) => handleInputChange(e, item.id)}
-                                            />
+                                            <div className={css.favoritesModalItemQuantityContainer}>
+                                                <button
+                                                    className={css.favoritesModalItemQuantityBtn}
+                                                    onClick={() => handleDecrease(item.id, item.quantity)}
+                                                >
+                                                    -
+                                                </button>
 
-                                            <button
-                                                className={css.favoritesModalItemQuantityBtn}
-                                                onClick={() => handleIncrease(item.id, item.quantity)}
-                                            >
-                                                +
-                                            </button>
+                                                <input
+                                                    type="text"
+                                                    className={css.favoritesModalItemQuantityInput}
+                                                    value={item.quantity}
+                                                    onChange={(e) => handleInputChange(e, item.id)}
+                                                />
+
+                                                <button
+                                                    className={css.favoritesModalItemQuantityBtn}
+                                                    onClick={() => handleIncrease(item.id, item.quantity)}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+
+                                            <p className={css.favoritesModalItemSum}>Sum: ${Number(item.price) * Number(item.quantity)}</p>
                                         </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <>
+                                <WishlistIcon className={css.favoritesModalIcon} />
 
-                                        <p className={css.favoritesModalItemSum}>Sum: ${Number(item.price) * Number(item.quantity)}</p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <>
-                            <WishlistIcon className={css.favoritesModalIcon} />
+                                <p className={css.favoritesModalEmpty}>Your Wishlist is empty</p>
+                            </>
+                        )}
 
-                            <p className={css.favoritesModalEmpty}>Your Wishlist is empty</p>
-                        </>
-                    )}
+                        <div className={css.favoritesModalBtnContainer}>
+                            <p className={css.favoritesModalText}>
+                                Enjoy free shipping on your first order and on all orders of three or more items!
+                            </p>
 
-                    <div className={css.favoritesModalBtnContainer}>
-                        <p className={css.favoritesModalText}>
-                            Enjoy free shipping on your first order and on all orders of three or more items!
-                        </p>
+                            <button type="button" className={css.favoritesModalBtnSubmit} onClick={handleOrderClick}>
+                                SUBMIT A REQUEST
+                            </button>
+                        </div>
+                    </>
+                )}
+            </div>
 
-                        <button type="button" className={css.favoritesModalBtnSubmit}>
-                            SUBMIT A REQUEST
-                        </button>
-                    </div>
-                </>
-            )}
-        </div>
+            {isOrderModalOpen && <Order onClose={handleCloseOrderModal} orderRef={orderRef} toggleFavoritesModal={toggleFavoritesModal} />}
+        </>
     );
 };
 

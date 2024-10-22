@@ -106,7 +106,7 @@ const Catalog = () => {
                             <ul className={css.catalogList}>
                                 {data.map((item) => (
                                     <li key={item.id} className={css.catalogItem}>
-                                        <CatalogItem img={item.img} name={item.name} id={item.id} />
+                                        <CatalogItem img={item.img} name={item.name} id={item.id} price={item.price} />
                                     </li>
                                 ))}
                             </ul>

@@ -41,7 +41,7 @@ const Bestsellers = () => {
             <ul className={css.bestsellersList}>
                 {bestsellers.map((item) => (
                     <li key={item.id} className={css.bestsellersItem}>
-                        <BestsellersItem id={item.id} name={item.name} img={item.img} />
+                        <BestsellersItem id={item.id} img={item.img} name={item.name} price={item.price} />
                     </li>
                 ))}
             </ul>

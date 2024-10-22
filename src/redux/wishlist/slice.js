@@ -28,14 +28,14 @@ const wishlistSlice = createSlice({
     initialState,
     reducers: {
         addToWishlist: (state, action) => {
-            const { id, quantity } = action.payload;
+            const { id, quantity, name, price } = action.payload;
 
             const existingItem = state.wishlist.find((item) => item.id === id);
 
             if (existingItem) {
                 existingItem.quantity = quantity;
             } else {
-                state.wishlist.push({ id, quantity });
+                state.wishlist.push({ id, quantity, name, price });
             }
 
             saveToLocalStorage(state.wishlist);
@@ -58,9 +58,13 @@ const wishlistSlice = createSlice({
                 saveToLocalStorage(state.wishlist);
             }
         },
+        clearWishlist: (state) => {
+            state.wishlist = [];
+            localStorage.removeItem("wishlist");
+        },
     },
 });
 
-export const { addToWishlist, removeFromWishlist, updateWishlistQuantity } = wishlistSlice.actions;
+export const { addToWishlist, removeFromWishlist, updateWishlistQuantity, clearWishlist } = wishlistSlice.actions;
 
 export default wishlistSlice.reducer;
