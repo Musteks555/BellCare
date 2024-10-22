@@ -60,7 +60,6 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef, ord
 
     useEffect(() => {
         calculateTotalSum(wishlist);
-        console.log(wishlist);
     }, [wishlist]);
 
     const handleOrderClick = () => {
