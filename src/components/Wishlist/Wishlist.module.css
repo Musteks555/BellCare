@@ -56,10 +56,21 @@
     font-size: 24px;
     color: #0e2b3d;
 
-    margin-bottom: 32px;
+    margin-bottom: 8px;
 }
 
 .favoritesModalQuantity span {
+    font-weight: 700;
+}
+
+.favoritesModalTotalSum {
+    font-size: 24px;
+    color: #0e2b3d;
+
+    margin-bottom: 32px;
+}
+
+.favoritesModalTotalSum span {
     font-weight: 700;
 }
 
@@ -126,6 +137,18 @@
 .favoritesModalItemName {
     font-size: 16px;
     color: #0e2b3d;
+}
+
+.favoritesModalItemPrice {
+    font-size: 16px;
+    color: #0e2b3d;
+    font-weight: 500;
+}
+
+.favoritesModalItemSum {
+    font-size: 16px;
+    color: #0e2b3d;
+    font-weight: 600;
 }
 
 .favoritesModalItemQuantityContainer {
@@ -233,6 +256,10 @@
 
     .favoritesModalQuantity {
         font-size: 28px;
+    }
+
+    .favoritesModalTotalSum {
+        font-size: 28px;
 
         margin-bottom: 40px;
     }
@@ -264,6 +291,14 @@
     }
 
     .favoritesModalItemName {
+        font-size: 18px;
+    }
+
+    .favoritesModalItemPrice {
+        font-size: 18px;
+    }
+
+    .favoritesModalItemSum {
         font-size: 18px;
     }
 
@@ -329,6 +364,10 @@
 
     .favoritesModalQuantity {
         font-size: 32px;
+    }
+
+    .favoritesModalTotalSum {
+        font-size: 32px;
 
         margin-bottom: 48px;
     }
@@ -360,6 +399,14 @@
     }
 
     .favoritesModalItemName {
+        font-size: 22px;
+    }
+
+    .favoritesModalItemPrice {
+        font-size: 22px;
+    }
+
+    .favoritesModalItemSum {
         font-size: 22px;
     }
 
