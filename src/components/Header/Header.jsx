@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
+
+import { selectWishlist } from "../../redux/wishlist/selector";
 
 import { FaRegHeart } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -17,16 +20,23 @@ import HeaderModalItem from "../HeaderModalItem/HeaderModalItem";
 import logo from "../../images/logo.svg";
 
 import css from "./Header.module.css";
+import Wishlist from "../Wishlist/Wishlist";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState(false);
+
     const location = useLocation();
     const inputRef = useRef(null);
     const modalRef = useRef(null);
+    const wishlistRef = useRef(null);
     const debounceTimeoutRef = useRef(null);
+
+    const wishlist = useSelector(selectWishlist);
+    const wishlistCount = wishlist.length;
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -34,6 +44,10 @@ const Header = () => {
 
     const closeMenu = () => {
         setIsMenuOpen(false);
+    };
+
+    const toggleFavoritesModal = () => {
+        setIsFavoritesModalOpen(!isFavoritesModalOpen);
     };
 
     const handleInputChange = (e) => {
@@ -68,12 +82,14 @@ const Header = () => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
-                modalRef.current &&
-                !modalRef.current.contains(event.target) &&
-                inputRef.current &&
-                !inputRef.current.contains(event.target)
+                (modalRef.current &&
+                    !modalRef.current.contains(event.target) &&
+                    inputRef.current &&
+                    !inputRef.current.contains(event.target)) ||
+                (wishlistRef.current && !wishlistRef.current.contains(event.target))
             ) {
                 setIsModalOpen(false);
+                setIsFavoritesModalOpen(false);
             }
         };
 
@@ -155,13 +171,13 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <Link to={"/favorites"} className={css.headerFavorites}>
+                        <button className={css.headerFavorites} onClick={toggleFavoritesModal}>
                             <FaRegHeart className={css.headerFavoritesIcon} color="157DC7" />
 
                             <div className={css.headerFavoritesQuantityContainer}>
-                                <p className={css.headerFavoritesQuantity}>0</p>
+                                <p className={css.headerFavoritesQuantity}>{wishlistCount}</p>
                             </div>
-                        </Link>
+                        </button>
                     </div>
 
                     <div className={css.headerSearchContainer}>
@@ -261,6 +277,12 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+
+                <Wishlist
+                    isFavoritesModalOpen={isFavoritesModalOpen}
+                    toggleFavoritesModal={toggleFavoritesModal}
+                    wishlistRef={wishlistRef}
+                />
             </header>
         </>
     );

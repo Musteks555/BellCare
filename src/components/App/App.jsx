@@ -13,7 +13,6 @@ const Catalog = lazy(() => import("../../pages/Catalog/Catalog"));
 const Product = lazy(() => import("../../pages/Product/Product"));
 const WhoWeAre = lazy(() => import("../../pages/WhoWeAre/WhoWeAre"));
 const ContactUs = lazy(() => import("../../pages/ContactUs/ContactUs"));
-const Favorites = lazy(() => import("../../pages/Favorites/Favorites"));
 const DeliveryInformation = lazy(() => import("../../pages/DeliveryInformation/DeliveryInformation"));
 const Terms = lazy(() => import("../../pages/Terms/Terms"));
 const PrivacyPolicy = lazy(() => import("../../pages/PrivacyPolicy/PrivacyPolicy"));
@@ -33,7 +32,6 @@ function App() {
                     <Route path="/product/:id" element={<Product />} />
                     <Route path="/about" element={<WhoWeAre />} />
                     <Route path="/contacts" element={<ContactUs />} />
-                    <Route path="/favorites" element={<Favorites />} />
                     <Route path="/delivery" element={<DeliveryInformation />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />

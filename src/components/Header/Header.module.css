@@ -105,7 +105,20 @@
 }
 
 .headerFavorites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background-color: inherit;
+
     position: relative;
+}
+
+.headerFavorites:focus,
+.headerFavorites:active {
+    border: none;
+    outline: none;
 }
 
 .headerFavoritesIcon {
