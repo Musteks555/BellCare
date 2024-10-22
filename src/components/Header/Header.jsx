@@ -82,13 +82,24 @@ const Header = () => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
-                (modalRef.current &&
-                    !modalRef.current.contains(event.target) &&
-                    inputRef.current &&
-                    !inputRef.current.contains(event.target)) ||
-                (wishlistRef.current && !wishlistRef.current.contains(event.target))
+                modalRef.current &&
+                !modalRef.current.contains(event.target) &&
+                inputRef.current &&
+                !inputRef.current.contains(event.target)
             ) {
                 setIsModalOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
                 setIsFavoritesModalOpen(false);
             }
         };
