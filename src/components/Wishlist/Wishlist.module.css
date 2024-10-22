@@ -63,6 +63,17 @@
     font-weight: 700;
 }
 
+.favoritesModalFreeShipping {
+    font-size: 16px;
+    color: red;
+
+    margin-bottom: 8px;
+}
+
+.favoritesModalFreeShipping span {
+    font-weight: 600;
+}
+
 .favoritesModalTotalSum {
     font-size: 24px;
     color: #0e2b3d;
@@ -209,6 +220,24 @@
     stroke: #0e2b3d;
 }
 
+.favoritesModalBtnContainer {
+    margin: auto 0 0;
+}
+
+.favoritesModalText {
+    font-size: 16px;
+    color: #0e2b3d;
+    font-weight: 500;
+
+    text-align: center;
+
+    border-top: 1px solid #0e2b3d;
+    border-bottom: 1px solid #0e2b3d;
+
+    padding: 8px;
+    margin-bottom: 24px;
+}
+
 .favoritesModalBtnSubmit {
     font-size: 22px;
     line-height: normal;
@@ -228,7 +257,7 @@
     background-color: #0e2b3d;
 
     padding: 12px 20px;
-    margin: auto auto 0;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -332,6 +361,13 @@
         height: 300px;
     }
 
+    .favoritesModalText {
+        font-size: 18px;
+
+        padding: 12px;
+        margin-bottom: 24px;
+    }
+
     .favoritesModalBtnSubmit {
         font-size: 26px;
 
@@ -368,12 +404,6 @@
 
     .favoritesModalTotalSum {
         font-size: 32px;
-
-        margin-bottom: 48px;
-    }
-
-    .favoritesModalList {
-        gap: 32px;
 
         margin-bottom: 48px;
     }
@@ -445,6 +475,13 @@
     .favoritesModalIcon {
         width: 400px;
         height: 400px;
+    }
+
+    .favoritesModalText {
+        font-size: 22px;
+
+        padding: 16px;
+        margin-bottom: 32px;
     }
 
     .favoritesModalBtnSubmit {

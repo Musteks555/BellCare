@@ -11,7 +11,7 @@ import css from "./Wishlist.module.css";
 
 const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) => {
     const [wishlist, setwishList] = useState([]);
-    const [wishlistCount, setWishlistCount] = useState(0);
+    const [totalItemsCount, setTotalItemsCount] = useState(0);
     const [totalSum, setTotalSum] = useState(0);
     const dispatch = useDispatch();
 
@@ -29,7 +29,9 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
             });
 
             setwishList(updatedWishlist);
-            setWishlistCount(updatedWishlist.length);
+
+            const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
+            setTotalItemsCount(totalQuantity);
         } catch (error) {
             console.error("Error during fetch:", error);
         }
@@ -50,6 +52,9 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
         calculateTotalSum(wishlist);
     }, [wishlist]);
 
+    const itemsNeededForFreeShipping = 3 - totalItemsCount;
+    const isFreeShippingMessageVisible = totalItemsCount < 3;
+
     const handleDecrease = (id) => {
         setwishList((prevWishlist) => {
             const updatedWishlist = prevWishlist.map((item) => {
@@ -63,6 +68,9 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
 
                 return item;
             });
+
+            const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
+            setTotalItemsCount(totalQuantity);
 
             return updatedWishlist;
         });
@@ -80,6 +88,9 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
                 }
                 return item;
             });
+
+            const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
+            setTotalItemsCount(totalQuantity);
 
             return updatedWishlist;
         });
@@ -100,6 +111,9 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
                     return item;
                 });
 
+                const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
+                setTotalItemsCount(totalQuantity);
+
                 return updatedWishlist;
             });
         }
@@ -113,7 +127,8 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
 
             localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
 
-            setWishlistCount(updatedWishlist.length);
+            const totalQuantity = updatedWishlist.reduce((total, item) => total + item.quantity, 0);
+            setTotalItemsCount(totalQuantity);
 
             return updatedWishlist;
         });
@@ -128,8 +143,15 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
             <h2 className={css.favoritesModalTitle}>Wish List</h2>
 
             <p className={css.favoritesModalQuantity}>
-                You have <span>{wishlistCount} items</span>
+                You have <span>{totalItemsCount} items</span>
             </p>
+
+            {isFreeShippingMessageVisible && (
+                <p className={css.favoritesModalFreeShipping}>
+                    Add <span>{itemsNeededForFreeShipping}</span> more {itemsNeededForFreeShipping === 1 ? "item" : "items"} for free
+                    shipping
+                </p>
+            )}
 
             <p className={css.favoritesModalTotalSum}>
                 Total Sum: <span>${totalSum.toFixed(2)}</span>
@@ -186,9 +208,13 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
                 </>
             )}
 
-            <button type="button" className={css.favoritesModalBtnSubmit}>
-                SUBMIT A REQUEST
-            </button>
+            <div className={css.favoritesModalBtnContainer}>
+                <p className={css.favoritesModalText}>Enjoy free shipping on your first order and on all orders of three or more items!</p>
+
+                <button type="button" className={css.favoritesModalBtnSubmit}>
+                    SUBMIT A REQUEST
+                </button>
+            </div>
         </div>
     );
 };
