@@ -7,9 +7,12 @@ import { fetchProducts } from "../../api/wishlist";
 import { RxCross2 } from "react-icons/rx";
 import WishlistIcon from "../../images/wishlist-empty.svg?react";
 
+import Loader from "../Loader/Loader";
+
 import css from "./Wishlist.module.css";
 
 const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) => {
+    const [isLoading, setIsLoading] = useState(false);
     const [wishlist, setwishList] = useState([]);
     const [totalItemsCount, setTotalItemsCount] = useState(0);
     const [totalSum, setTotalSum] = useState(0);
@@ -19,6 +22,8 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
         const storedWishlist = localStorage.getItem("wishlist");
         const wishlistItems = JSON.parse(storedWishlist) || [];
         const arrId = wishlistItems.map((item) => item.id);
+
+        setIsLoading(true);
 
         try {
             const response = await fetchProducts(arrId);
@@ -34,6 +39,8 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
             setTotalItemsCount(totalQuantity);
         } catch (error) {
             console.error("Error during fetch:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -142,79 +149,91 @@ const Wishlist = ({ isFavoritesModalOpen, toggleFavoritesModal, wishlistRef }) =
 
             <h2 className={css.favoritesModalTitle}>Wish List</h2>
 
-            <p className={css.favoritesModalQuantity}>
-                You have <span>{totalItemsCount} items</span>
-            </p>
-
-            {isFreeShippingMessageVisible && (
-                <p className={css.favoritesModalFreeShipping}>
-                    Add <span>{itemsNeededForFreeShipping}</span> more {itemsNeededForFreeShipping === 1 ? "item" : "items"} for free
-                    shipping
-                </p>
-            )}
-
-            <p className={css.favoritesModalTotalSum}>
-                Total Sum: <span>${totalSum.toFixed(2)}</span>
-            </p>
-
-            {wishlist.length > 0 ? (
-                <ul className={css.favoritesModalList}>
-                    {wishlist.map((item) => (
-                        <li key={item.id} className={css.favoritesModalItem}>
-                            <button className={css.favoritesModalItemBtnRemove} onClick={() => handleRemoveItem(item.id)}>
-                                <RxCross2 className={css.favoritesModalItemBtnRemoveIcon} />
-                            </button>
-
-                            <img src={`https://test.wax-stake.com/img/${item.img}`} alt={item.name} className={css.favoritesModalItemImg} />
-
-                            <div className={css.favoritesModalItemContainer}>
-                                <p className={css.favoritesModalItemName}>{item.name}</p>
-
-                                <p className={css.favoritesModalItemPrice}>${item.price}</p>
-
-                                <div className={css.favoritesModalItemQuantityContainer}>
-                                    <button
-                                        className={css.favoritesModalItemQuantityBtn}
-                                        onClick={() => handleDecrease(item.id, item.quantity)}
-                                    >
-                                        -
-                                    </button>
-
-                                    <input
-                                        type="text"
-                                        className={css.favoritesModalItemQuantityInput}
-                                        value={item.quantity}
-                                        onChange={(e) => handleInputChange(e, item.id)}
-                                    />
-
-                                    <button
-                                        className={css.favoritesModalItemQuantityBtn}
-                                        onClick={() => handleIncrease(item.id, item.quantity)}
-                                    >
-                                        +
-                                    </button>
-                                </div>
-
-                                <p className={css.favoritesModalItemSum}>Sum: ${Number(item.price) * Number(item.quantity)}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+            {isLoading ? ( // Показываем Loader, если данные загружаются
+                <Loader />
             ) : (
                 <>
-                    <WishlistIcon className={css.favoritesModalIcon} />
+                    <p className={css.favoritesModalQuantity}>
+                        You have <span>{totalItemsCount} items</span>
+                    </p>
 
-                    <p className={css.favoritesModalEmpty}>Your Wishlist is empty</p>
+                    {isFreeShippingMessageVisible && (
+                        <p className={css.favoritesModalFreeShipping}>
+                            Add <span>{itemsNeededForFreeShipping}</span> more {itemsNeededForFreeShipping === 1 ? "item" : "items"} for
+                            free shipping
+                        </p>
+                    )}
+
+                    <p className={css.favoritesModalTotalSum}>
+                        Total Sum: <span>${totalSum.toFixed(2)}</span>
+                    </p>
+
+                    {wishlist.length > 0 ? (
+                        <ul className={css.favoritesModalList}>
+                            {wishlist.map((item) => (
+                                <li key={item.id} className={css.favoritesModalItem}>
+                                    <button className={css.favoritesModalItemBtnRemove} onClick={() => handleRemoveItem(item.id)}>
+                                        <RxCross2 className={css.favoritesModalItemBtnRemoveIcon} />
+                                    </button>
+
+                                    <img
+                                        src={`https://test.wax-stake.com/img/${item.img}`}
+                                        alt={item.name}
+                                        className={css.favoritesModalItemImg}
+                                    />
+
+                                    <div className={css.favoritesModalItemContainer}>
+                                        <p className={css.favoritesModalItemName}>{item.name}</p>
+
+                                        <p className={css.favoritesModalItemPrice}>${item.price}</p>
+
+                                        <div className={css.favoritesModalItemQuantityContainer}>
+                                            <button
+                                                className={css.favoritesModalItemQuantityBtn}
+                                                onClick={() => handleDecrease(item.id, item.quantity)}
+                                            >
+                                                -
+                                            </button>
+
+                                            <input
+                                                type="text"
+                                                className={css.favoritesModalItemQuantityInput}
+                                                value={item.quantity}
+                                                onChange={(e) => handleInputChange(e, item.id)}
+                                            />
+
+                                            <button
+                                                className={css.favoritesModalItemQuantityBtn}
+                                                onClick={() => handleIncrease(item.id, item.quantity)}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <p className={css.favoritesModalItemSum}>Sum: ${Number(item.price) * Number(item.quantity)}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <>
+                            <WishlistIcon className={css.favoritesModalIcon} />
+
+                            <p className={css.favoritesModalEmpty}>Your Wishlist is empty</p>
+                        </>
+                    )}
+
+                    <div className={css.favoritesModalBtnContainer}>
+                        <p className={css.favoritesModalText}>
+                            Enjoy free shipping on your first order and on all orders of three or more items!
+                        </p>
+
+                        <button type="button" className={css.favoritesModalBtnSubmit}>
+                            SUBMIT A REQUEST
+                        </button>
+                    </div>
                 </>
             )}
-
-            <div className={css.favoritesModalBtnContainer}>
-                <p className={css.favoritesModalText}>Enjoy free shipping on your first order and on all orders of three or more items!</p>
-
-                <button type="button" className={css.favoritesModalBtnSubmit}>
-                    SUBMIT A REQUEST
-                </button>
-            </div>
         </div>
     );
 };
