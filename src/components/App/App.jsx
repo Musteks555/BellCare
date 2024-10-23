@@ -1,9 +1,10 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router";
 
 import Layout from "../Layout/Layout";
 import SharedLayout from "../SharedLayout/SharedLayout";
 import ScrollTop from "../ScrollTop/ScrollTop";
+import Loader from "../Loader/Loader";
 
 const Home = lazy(() => import("../../pages/Home/Home"));
 const Categories = lazy(() => import("../../pages/Categories/Categories"));
@@ -23,22 +24,24 @@ function App() {
         <Layout>
             <SharedLayout>
                 <ScrollTop />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/categories" element={<Categories />} />
-                    <Route path="/brands" element={<Brands />} />
-                    <Route path="/manufacturers" element={<Manufacturers />} />
-                    <Route path="/catalog" element={<Catalog />} />
-                    <Route path="/product/:id" element={<Product />} />
-                    <Route path="/about" element={<WhoWeAre />} />
-                    <Route path="/contacts" element={<ContactUs />} />
-                    <Route path="/delivery" element={<DeliveryInformation />} />
-                    <Route path="/terms" element={<Terms />} />
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="/faq" element={<Faq />} />
+                <Suspense fallback={<Loader />}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/categories" element={<Categories />} />
+                        <Route path="/brands" element={<Brands />} />
+                        <Route path="/manufacturers" element={<Manufacturers />} />
+                        <Route path="/catalog" element={<Catalog />} />
+                        <Route path="/product/:id" element={<Product />} />
+                        <Route path="/about" element={<WhoWeAre />} />
+                        <Route path="/contacts" element={<ContactUs />} />
+                        <Route path="/delivery" element={<DeliveryInformation />} />
+                        <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                        <Route path="/faq" element={<Faq />} />
 
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                </Suspense>
             </SharedLayout>
         </Layout>
     );
