@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectWishlistItemById } from "../../redux/wishlist/selector";
 import { addToWishlist, removeFromWishlist, updateWishlistQuantity } from "../../redux/wishlist/slice";
 
-import { fetchProductById } from "../../api/catalog";
+import { fetchProducts } from "../../api/wishlist";
 
 import Loader from "../../components/Loader/Loader";
 import Container from "../../components/Container/Container";
@@ -30,7 +30,7 @@ const Product = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetchProductById(id)
+        fetchProducts([id])
             .then((data) => {
                 setProduct(data.items[0]);
                 setLoading(false);
