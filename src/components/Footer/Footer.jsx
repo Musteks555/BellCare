@@ -78,10 +78,11 @@ const Footer = () => {
                     </Link>
 
                     <p className={css.footerPrivacyText}>
-                        <strong>BELL CARE</strong>
+                        <strong>© 2024 Bell Care</strong>
                         <br />
                         All rights reserved.
-                        <br />© [2024] BELL CARE.
+                        <br />
+                        Operated by Profarma Direct.
                     </p>
                 </div>
             </Container>
