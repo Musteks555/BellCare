@@ -67,6 +67,12 @@ const Order = ({ onClose, orderRef, toggleFavoritesModal }) => {
             });
 
             if (response.data === "success") {
+                dispatch(clearWishlist());
+                setEmail("");
+                setPhone("");
+                setName("");
+                toggleFavoritesModal();
+                onClose();
                 toast.success("Thank you for your order! Our team will reach out to you shortly during our business hours.");
             } else {
                 toast.error("There was an error submitting your order. Please try again.");
@@ -76,12 +82,6 @@ const Order = ({ onClose, orderRef, toggleFavoritesModal }) => {
             console.log(error);
         } finally {
             setIsLoading(false);
-            setEmail("");
-            setPhone("");
-            setName("");
-            dispatch(clearWishlist());
-            toggleFavoritesModal();
-            onClose();
         }
     };
 
