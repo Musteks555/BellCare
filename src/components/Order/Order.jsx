@@ -60,11 +60,7 @@ const Order = ({ onClose, orderRef, toggleFavoritesModal }) => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post("https://test.wax-stake.com/tg.php", orderData, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await axios.post("https://test.wax-stake.com/tg.php", orderData);
 
             if (response.data === "success") {
                 dispatch(clearWishlist());
