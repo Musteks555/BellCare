@@ -60,7 +60,7 @@ const Order = ({ onClose, orderRef, toggleFavoritesModal }) => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post("https://bellcareline.com/tg.php", orderData, {
+            const response = await axios.post("https://test.wax-stake.com/tg.php", orderData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
